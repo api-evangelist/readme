@@ -25,6 +25,8 @@ access: 3rd-Party
 created: '2025-01-08'
 modified: '2025-01-13'
 position: Consumer
+segments:
+  - Documentation
 description: >-
   ReadMe is a platform that helps companies create and manage their API
   documentation. With ReadMe, companies can easily create interactive and
