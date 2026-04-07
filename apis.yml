@@ -5,7 +5,6 @@ apis:
   - aid: readme:readme-api
     name: ReadMe API
     tags:
-      - API
       - Documentation
     humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
     baseURL: https://dash.readme.io/api/v1
@@ -37,8 +36,8 @@ apis:
 name: ReadMe
 tags:
   - Documentation
-  - Portals
   - Platform
+  - Portals
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
