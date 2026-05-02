@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: ReadMe Developer Metrics API
+  description: >-
+    The ReadMe Developer Metrics API provides endpoints for sending API logs
+    and retrieving analytics data including page quality scores, page view
+    statistics, and search analytics. It powers the Developer Dashboard.
+  version: '1.0'
+  contact:
+    name: ReadMe Support
+    url: https://readme.com/developer-dashboard
+servers:
+  - url: https://metrics.readme.io/v1
+    description: ReadMe Metrics API
+security:
+  - basicAuth: []
+tags:
+  - name: Metrics
+    description: Send and receive API request metrics
+  - name: Analytics
+    description: Page view and search analytics
+paths:
+  /request:
+    post:
+      tags:
+        - Metrics
+      summary: Submit API request logs
+      description: Send API request and response metadata to ReadMe Metrics for analysis in the Developer Dashboard.
+      responses:
+        '200':
+          description: Logs accepted
+        '401':
+          description: Unauthorized
+  /quality:
+    get:
+      tags:
+        - Analytics
+      summary: Retrieve page quality scores
+      responses:
+        '200':
+          description: Quality scores
+  /pageviews:
+    get:
+      tags:
+        - Analytics
+      summary: Retrieve page view statistics
+      responses:
+        '200':
+          description: Page view stats
+  /search:
+    get:
+      tags:
+        - Analytics
+      summary: Retrieve search analytics
+      responses:
+        '200':
+          description: Search analytics
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth using your ReadMe API key as the username.
