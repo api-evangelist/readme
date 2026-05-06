@@ -1,0 +1,162 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ReadMe Developer Metrics API
+  description: The ReadMe Developer Metrics API provides endpoints for sending API logs and retrieving analytics data including
+    page quality scores, page view statistics, and search analytics. It powers the Developer Dashboard.
+  tags:
+  - Readme
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: readme
+    baseUri: https://metrics.readme.io/v1
+    description: ReadMe Developer Metrics API HTTP API.
+    authentication:
+      type: basic
+      username: '{{README_USERNAME}}'
+      password: '{{README_PASSWORD}}'
+    resources:
+    - name: request
+      path: /request
+      operations:
+      - name: post-request
+        method: POST
+        description: Submit API request logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: quality
+      path: /quality
+      operations:
+      - name: get-quality
+        method: GET
+        description: Retrieve page quality scores
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pageviews
+      path: /pageviews
+      operations:
+      - name: get-pageviews
+        method: GET
+        description: Retrieve page view statistics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: search
+      path: /search
+      operations:
+      - name: get-search
+        method: GET
+        description: Retrieve search analytics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: readme-rest
+    description: REST adapter for ReadMe Developer Metrics API.
+    resources:
+    - path: /request
+      name: post-request
+      operations:
+      - method: POST
+        name: post-request
+        description: Submit API request logs
+        call: readme.post-request
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /quality
+      name: get-quality
+      operations:
+      - method: GET
+        name: get-quality
+        description: Retrieve page quality scores
+        call: readme.get-quality
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pageviews
+      name: get-pageviews
+      operations:
+      - method: GET
+        name: get-pageviews
+        description: Retrieve page view statistics
+        call: readme.get-pageviews
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /search
+      name: get-search
+      operations:
+      - method: GET
+        name: get-search
+        description: Retrieve search analytics
+        call: readme.get-search
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: readme-mcp
+    transport: http
+    description: MCP adapter for ReadMe Developer Metrics API for AI agent use.
+    tools:
+    - name: post-request
+      description: Submit API request logs
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: readme.post-request
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-quality
+      description: Retrieve page quality scores
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: readme.get-quality
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pageviews
+      description: Retrieve page view statistics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: readme.get-pageviews
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-search
+      description: Retrieve search analytics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: readme.get-search
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    README_USERNAME: README_USERNAME
+    README_PASSWORD: README_PASSWORD
