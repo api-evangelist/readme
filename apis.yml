@@ -85,7 +85,7 @@ common:
   - url: https://readme.com/about
     type: About
   - url: https://www.readmestatus.com
-    type: Status
+    type: StatusPage
   - url: https://readme.com/tos
     type: TermsOfService
   - url: https://readme.com/privacy
