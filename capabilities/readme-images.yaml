@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ReadMe API — Images
+  description: 'ReadMe API — Images. 1 operations. Lead operation: Upload an image. Self-contained Naftiko capability covering
+    one Readme business surface.'
+  tags:
+  - Readme
+  - Images
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    README_API_KEY: README_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: readme-images
+    baseUri: https://api.readme.com/v2
+    description: ReadMe API — Images business capability. Self-contained, no shared references.
+    resources:
+    - name: images
+      path: /images
+      operations:
+      - name: post
+        method: POST
+        description: Upload an image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.README_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: readme-images-rest
+    port: 8080
+    description: REST adapter for ReadMe API — Images. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/images
+      name: images
+      description: REST surface for images.
+      operations:
+      - method: POST
+        name: post
+        description: Upload an image
+        call: readme-images.post
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: readme-images-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ReadMe API — Images. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: upload-image
+      description: Upload an image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: readme-images.post
+      outputParameters:
+      - type: object
+        mapping: $.

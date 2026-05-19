@@ -1,0 +1,204 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ReadMe API — Changelog
+  description: 'ReadMe API — Changelog. 5 operations. Lead operation: List changelog posts. Self-contained Naftiko capability
+    covering one Readme business surface.'
+  tags:
+  - Readme
+  - Changelog
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    README_API_KEY: README_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: readme-changelog
+    baseUri: https://api.readme.com/v2
+    description: ReadMe API — Changelog business capability. Self-contained, no shared references.
+    resources:
+    - name: changelogs
+      path: /changelogs
+      operations:
+      - name: get
+        method: GET
+        description: List changelog posts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a changelog post
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: changelogs-slug
+      path: /changelogs/{slug}
+      operations:
+      - name: get
+        method: GET
+        description: Get a changelog post
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: slug
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Update a changelog post
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: slug
+          in: path
+          type: string
+          required: true
+      - name: delete
+        method: DELETE
+        description: Delete a changelog post
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: slug
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.README_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: readme-changelog-rest
+    port: 8080
+    description: REST adapter for ReadMe API — Changelog. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/changelogs
+      name: changelogs
+      description: REST surface for changelogs.
+      operations:
+      - method: GET
+        name: get
+        description: List changelog posts
+        call: readme-changelog.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a changelog post
+        call: readme-changelog.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/changelogs/{slug}
+      name: changelogs-slug
+      description: REST surface for changelogs-slug.
+      operations:
+      - method: GET
+        name: get
+        description: Get a changelog post
+        call: readme-changelog.get
+        with:
+          slug: rest.slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Update a changelog post
+        call: readme-changelog.put
+        with:
+          slug: rest.slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Delete a changelog post
+        call: readme-changelog.delete
+        with:
+          slug: rest.slug
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: readme-changelog-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ReadMe API — Changelog. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-changelog-posts
+      description: List changelog posts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: readme-changelog.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-changelog-post
+      description: Create a changelog post
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: readme-changelog.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-changelog-post
+      description: Get a changelog post
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: readme-changelog.get
+      with:
+        slug: tools.slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-changelog-post
+      description: Update a changelog post
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: readme-changelog.put
+      with:
+        slug: tools.slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-changelog-post
+      description: Delete a changelog post
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: readme-changelog.delete
+      with:
+        slug: tools.slug
+      outputParameters:
+      - type: object
+        mapping: $.

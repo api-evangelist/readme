@@ -1,0 +1,204 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ReadMe API — Guides
+  description: 'ReadMe API — Guides. 5 operations. Lead operation: List guide pages. Self-contained Naftiko capability covering
+    one Readme business surface.'
+  tags:
+  - Readme
+  - Guides
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    README_API_KEY: README_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: readme-guides
+    baseUri: https://api.readme.com/v2
+    description: ReadMe API — Guides business capability. Self-contained, no shared references.
+    resources:
+    - name: docs
+      path: /docs
+      operations:
+      - name: get
+        method: GET
+        description: List guide pages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a guide page
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: docs-slug
+      path: /docs/{slug}
+      operations:
+      - name: get
+        method: GET
+        description: Get a guide by slug
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: slug
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Update a guide
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: slug
+          in: path
+          type: string
+          required: true
+      - name: delete
+        method: DELETE
+        description: Delete a guide
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: slug
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.README_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: readme-guides-rest
+    port: 8080
+    description: REST adapter for ReadMe API — Guides. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/docs
+      name: docs
+      description: REST surface for docs.
+      operations:
+      - method: GET
+        name: get
+        description: List guide pages
+        call: readme-guides.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a guide page
+        call: readme-guides.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/docs/{slug}
+      name: docs-slug
+      description: REST surface for docs-slug.
+      operations:
+      - method: GET
+        name: get
+        description: Get a guide by slug
+        call: readme-guides.get
+        with:
+          slug: rest.slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Update a guide
+        call: readme-guides.put
+        with:
+          slug: rest.slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Delete a guide
+        call: readme-guides.delete
+        with:
+          slug: rest.slug
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: readme-guides-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ReadMe API — Guides. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-guide-pages
+      description: List guide pages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: readme-guides.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-guide-page
+      description: Create a guide page
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: readme-guides.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-guide-slug
+      description: Get a guide by slug
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: readme-guides.get
+      with:
+        slug: tools.slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-guide
+      description: Update a guide
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: readme-guides.put
+      with:
+        slug: tools.slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-guide
+      description: Delete a guide
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: readme-guides.delete
+      with:
+        slug: tools.slug
+      outputParameters:
+      - type: object
+        mapping: $.
