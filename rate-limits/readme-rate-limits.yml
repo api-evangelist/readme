@@ -4,91 +4,53 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: ReadMe
 providerId: readme
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-22'
 tags:
   - Documentation
-  - Platform
-  - Portals
   - Developer Hub
-  - Analytics
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the ReadMe API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+description: Machine-readable rate-limit definitions for ReadMe's developer-facing APIs. ReadMe does not publish
+  granular numeric rate limits on its public pricing or docs; ReadMe API limits are enforced as fair-use throttling
+  signaled via standard rate-limit response headers and 429 status codes. The Metrics ingestion endpoint is
+  designed for high-volume per-request logging from server-side SDKs.
 headers:
   limit: X-RateLimit-Limit
   remaining: X-RateLimit-Remaining
   reset: X-RateLimit-Reset
   retryAfter: Retry-After
-  policy: RateLimit-Policy
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
+  - tier: all
+    name: ReadMe API Fair Use
     scope: api-key
     metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
+    limit: documented-as-fair-use
+    description: ReadMe enforces fair-use throttling on the v2 API. Honor 429 responses and the Retry-After
+      header. Specific numeric thresholds are not published.
     applies:
       - ReadMe API
-      - ReadMe Developer Metrics API
-  - tier: free
-    name: Free Tier Monthly Quota
+  - tier: all
+    name: Metrics Ingestion
     scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
+    metric: requests_per_second
+    limit: high-volume
+    description: The Metrics API at metrics.readme.io is designed for continuous high-volume log ingestion
+      from server-side SDKs. Batching is recommended.
     applies:
-      - ReadMe API
-      - ReadMe Developer Metrics API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - ReadMe API
-      - ReadMe Developer Metrics API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - ReadMe API
-      - ReadMe Developer Metrics API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - ReadMe API
       - ReadMe Developer Metrics API
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
+    description: Clients should implement exponential backoff with jitter and honor the Retry-After header.
+  - name: Batching
+    description: Metrics SDKs batch log entries to reduce request volume against /v1/request.
   - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: ReadMe reserves the right to throttle abusive patterns; sustained high-volume traffic should
+      be coordinated with ReadMe support.
+sources:
+  - https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - https://docs.readme.com/main/docs/sending-api-logs
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

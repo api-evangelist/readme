@@ -1,0 +1,73 @@
+extends:
+  - spectral:oas
+formats:
+  - oas3_1
+rules:
+  readme-info-title:
+    description: API title must be present and start with "ReadMe".
+    given: $.info.title
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^ReadMe'
+  readme-info-contact:
+    description: API info must include a contact block.
+    given: $.info
+    severity: warn
+    then:
+      field: contact
+      function: truthy
+  readme-server-url:
+    description: Server URLs should point to api.readme.com or metrics.readme.io.
+    given: $.servers[*].url
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '(api\.readme\.com|metrics\.readme\.io|dash\.readme\.io)'
+  readme-bearer-auth:
+    description: The ReadMe API must declare bearer auth.
+    given: $.components.securitySchemes
+    severity: error
+    then:
+      field: bearerAuth
+      function: truthy
+  readme-tag-title-case:
+    description: Tags must be Title Case.
+    given: $.tags[*].name
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][A-Za-z0-9]*(\s[A-Z][A-Za-z0-9]*)*$'
+  readme-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    given: $.paths[*][get,post,put,patch,delete].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][A-Za-z0-9]*(\s[A-Z][A-Za-z0-9]*)*$'
+  readme-operation-tags-required:
+    description: Every operation must have at least one tag.
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: error
+    then:
+      field: tags
+      function: truthy
+  readme-operation-responses-required:
+    description: Every operation must define at least one response.
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: error
+    then:
+      field: responses
+      function: truthy
+  readme-no-trailing-slash:
+    description: Paths must not end with a trailing slash.
+    given: $.paths
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: '/$'

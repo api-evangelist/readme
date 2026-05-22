@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/json-schema/readme-metrics-request-schema.json",
+  "title": "ReadMe Metrics Request Log",
+  "description": "HAR-formatted API request log submitted to the ReadMe Metrics API by a server-side Metrics SDK.",
+  "type": "object",
+  "required": ["_id", "request", "response"],
+  "properties": {
+    "_id": { "type": "string", "description": "Client-generated UUID for the log entry." },
+    "group": {
+      "type": "object",
+      "description": "The API consumer this request is attributed to (key, label, email).",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "email": { "type": "string", "format": "email" }
+      }
+    },
+    "clientIPAddress": { "type": "string" },
+    "development": {
+      "type": "boolean",
+      "description": "True if the log was generated in a non-production environment."
+    },
+    "request": {
+      "type": "object",
+      "description": "HAR-formatted request object."
+    },
+    "response": {
+      "type": "object",
+      "description": "HAR-formatted response object."
+    }
+  }
+}

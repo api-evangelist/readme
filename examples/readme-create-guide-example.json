@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.readme.com/v2/branches/stable/guides",
+    "headers": {
+      "Authorization": "Bearer rdme_xxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "title": "Quickstart",
+      "slug": "quickstart",
+      "category": "getting-started",
+      "body": "# Quickstart\n\nGet up and running with the API in five minutes.",
+      "hidden": false
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "slug": "quickstart",
+      "title": "Quickstart",
+      "category": "getting-started",
+      "branch": "stable",
+      "hidden": false,
+      "createdAt": "2026-05-22T16:01:00Z",
+      "updatedAt": "2026-05-22T16:01:00Z"
+    }
+  }
+}

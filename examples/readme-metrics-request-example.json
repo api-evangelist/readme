@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://metrics.readme.io/v1/request",
+    "headers": {
+      "Authorization": "Basic cmRtZV94eHg6",
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "_id": "5f3a2b1c-9d8e-7f6a-5b4c-3d2e1a4b5c6d",
+        "group": {
+          "id": "user_abc123",
+          "label": "Acme Corp",
+          "email": "dev@acme.example"
+        },
+        "clientIPAddress": "203.0.113.42",
+        "development": false,
+        "request": {
+          "log": {
+            "entries": [
+              {
+                "request": {
+                  "method": "GET",
+                  "url": "https://api.acme.example/v1/pets",
+                  "httpVersion": "HTTP/1.1",
+                  "headers": [{ "name": "Authorization", "value": "Bearer ..." }]
+                },
+                "response": {
+                  "status": 200,
+                  "statusText": "OK"
+                }
+              }
+            ]
+          }
+        },
+        "response": {
+          "status": 200
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 202,
+    "body": { "accepted": 1 }
+  }
+}

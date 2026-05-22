@@ -1,21 +1,50 @@
 aid: readme
 url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/apis.yml
+name: ReadMe
+description: ReadMe is a developer hub platform that helps companies design, document, and operate their APIs. The
+  platform combines hosted API reference (OpenAPI-driven), guides and changelog, bi-directional Git sync (GitHub
+  and GitLab), interactive API explorer, Try-It console, Developer Dashboard with real-time API logs, and a deep
+  layer of AI tooling — including the ReadMe Agent for multi-page editing, Inline AI rewrites, the AI Linter for
+  style-guide enforcement, Docs Audit, GitHub AI Writer for PR-triggered doc updates, Ask AI for end users, and
+  Model Context Protocol (MCP) servers for both ReadMe itself and each customer project so AI tools can search,
+  read, update docs, and call APIs.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+type: Index
+access: 3rd-Party
+position: Consumer
+created: '2025-01-08'
+modified: '2026-05-22'
+tags:
+- Documentation
+- Developer Hub
+- API Reference
+- Portals
+- Analytics
+- AI
+- MCP
+- Bi-Directional Sync
+segments:
+- Documentation
 apis:
 - aid: readme:readme-api
   name: ReadMe API
+  description: The ReadMe API (v2) lets you programmatically control your ReadMe developer hub. It manages API
+    definitions, API reference pages, guides, changelog, custom pages, categories, branches (versions), images,
+    recipes, and search. Authentication uses a Bearer API key.
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
   tags:
   - Documentation
   - Developer Hub
   - Content Management
-  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
-  baseURL: https://api.readme.com/v2
+  - API Reference
   properties:
-  - url: https://docs.readme.com/main/reference/intro-to-the-readme-api
-    type: Documentation
-  - url: https://docs.readme.com/main/reference/authentication
-    type: Authentication
-  - url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-openapi.yml
-    type: OpenAPI
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-openapi.yml
   - type: NaftikoCapability
     url: capabilities/readme-api-keys.yaml
   - type: NaftikoCapability
@@ -34,77 +63,114 @@ apis:
     url: capabilities/readme-images.yaml
   - type: NaftikoCapability
     url: capabilities/readme-search.yaml
-  description: The ReadMe API lets you programmatically control your ReadMe developer hub. You can manage API definitions,
-    API reference pages, guides, changelogs, custom pages, categories, branches, images, recipes, and search. Authentication
-    uses a Bearer API key.
 - aid: readme:developer-metrics-api
   name: ReadMe Developer Metrics API
+  description: The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from
+    Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view
+    statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real
+    time.
+  humanURL: https://docs.readme.com/main/docs/sending-api-logs
+  baseURL: https://metrics.readme.io/v1
   tags:
   - Analytics
   - Metrics
   - Logging
-  humanURL: https://readme.com/developer-dashboard
-  baseURL: https://metrics.readme.io/v1
+  - Developer Dashboard
   properties:
-  - url: https://readme.com/developer-dashboard
-    type: Documentation
-  - url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-developer-metrics-openapi.yml
-    type: OpenAPI
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-developer-metrics-openapi.yml
+  - type: SDK
+    url: https://github.com/readmeio/metrics-sdks
   - type: NaftikoCapability
     url: capabilities/developer-metrics-analytics.yaml
   - type: NaftikoCapability
     url: capabilities/developer-metrics-metrics.yaml
-  description: The ReadMe Developer Metrics API provides endpoints for sending API logs and retrieving analytics data including
-    page quality scores, page view statistics, and search analytics. It powers the Developer Dashboard where you can investigate
-    API usage by key or email and debug requests in real time.
-name: ReadMe
-tags:
-- Documentation
-- Platform
-- Portals
-- Developer Hub
-- Analytics
-type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-access: 3rd-Party
-created: '2025-01-08'
-modified: '2026-05-19'
-position: Consumer
-segments:
-- Documentation
-description: ReadMe is a platform that helps companies create and manage their API documentation. With ReadMe, companies can
-  easily create interactive and informative documentation that is user-friendly and visually appealing. By providing tools
-  for developers to easily access and understand API documentation, ReadMe helps companies improve developer onboarding, increase
-  API adoption, and drive developer satisfaction.
+- aid: readme:mcp-server
+  name: ReadMe MCP Server
+  description: ReadMe operates a hosted Model Context Protocol (MCP) server that lets AI tools (Claude, Cursor,
+    IDEs, CI pipelines) search, read, and update ReadMe documentation through natural language. ReadMe also
+    auto-provisions a per-project MCP server for every customer so end users' AI tools can read, search, and call
+    that project's API directly.
+  humanURL: https://docs.readme.com/main/docs/readmes-mcp-server
+  tags:
+  - MCP
+  - AI
+  - Model Context Protocol
+  - Agents
+  properties:
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/readmes-mcp-server
+  - type: UseCases
+    url: https://docs.readme.com/main/docs/readmes-mcp-use-cases
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/your-projects-mcp-server
+  - type: UseCases
+    url: https://docs.readme.com/main/docs/your-projects-mcp-use-cases
+  - type: Explainer
+    url: https://docs.readme.com/main/docs/mcp-servers
+  - type: NaftikoCapability
+    url: capabilities/readme-mcp.yaml
 common:
+- type: Portal
+  url: https://readme.com
+- type: GettingStarted
+  url: https://docs.readme.com/main/docs/quickstart
+- type: Documentation
+  url: https://docs.readme.com
+- type: APIReference
+  url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+- type: Pricing
+  url: https://readme.com/pricing
+- type: SignUp
+  url: https://dash.readme.com/signup
+- type: Login
+  url: https://dash.readme.com/login
+- type: Blog
+  url: https://readme.com/blog
+- type: ChangeLog
+  url: https://docs.readme.com/main/changelog
+- type: About
+  url: https://readme.com/about
+- type: StatusPage
+  url: https://www.readmestatus.com
+- type: TermsOfService
+  url: https://readme.com/tos
+- type: PrivacyPolicy
+  url: https://readme.com/privacy
+- type: GitHubOrg
+  url: https://github.com/readmeio
 - type: LinkedIn
   url: https://www.linkedin.com/company/readme
-- url: https://readme.com
-  type: Portal
-- url: https://docs.readme.com/main/docs/quickstart
-  type: GettingStarted
-- url: https://docs.readme.com
-  type: Documentation
-- url: https://readme.com/pricing
-  type: Pricing
-- url: https://dash.readme.com/signup
-  type: SignUp
-- url: https://dash.readme.com/login
-  type: Login
-- url: https://readme.com/blog
-  type: Blog
-- url: https://docs.readme.com/main/changelog
-  type: ChangeLog
-- url: https://readme.com/about
-  type: About
-- url: https://www.readmestatus.com
-  type: StatusPage
-- url: https://readme.com/tos
-  type: TermsOfService
-- url: https://readme.com/privacy
-  type: PrivacyPolicy
-- url: https://github.com/readmeio
-  type: GitHubOrg
+- type: LLMsTxt
+  url: https://docs.readme.com/llms.txt
+- type: CLI
+  url: https://github.com/readmeio/rdme
+- type: SDK
+  url: https://github.com/readmeio/metrics-sdks
+- type: Tools
+  url: https://github.com/readmeio/oas
+- type: Tools
+  url: https://github.com/readmeio/api
+- type: Tools
+  url: https://github.com/readmeio/markdown
+- type: GitHubAction
+  url: https://github.com/readmeio/rdme
+- type: Marketplace
+  url: https://github.com/readmeio/marketplace
+- type: Plans
+  url: plans/readme-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/readme-rate-limits.yml
+- type: FinOps
+  url: finops/readme-finops.yml
+- type: Vocabulary
+  url: vocabulary/readme-vocabulary.yml
+- type: JSONLDContext
+  url: json-ld/readme-context.jsonld
+- type: SpectralRules
+  url: rules/readme-rules.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/json-schema/readme-branch-schema.json",
+  "title": "ReadMe Branch",
+  "description": "A version/branch of a ReadMe project. Branches replace the legacy 'version' concept and back ReadMe's review-and-merge workflow.",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "isStable": { "type": "boolean" },
+    "isBeta": { "type": "boolean" },
+    "isDeprecated": { "type": "boolean" },
+    "isHidden": { "type": "boolean" },
+    "forkedFrom": { "type": ["string", "null"] },
+    "createdAt": { "type": "string", "format": "date-time" }
+  }
+}

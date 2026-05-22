@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/json-schema/readme-changelog-schema.json",
+  "title": "ReadMe Changelog Post",
+  "description": "A changelog entry published to a ReadMe hub.",
+  "type": "object",
+  "required": ["slug", "title", "body", "type"],
+  "properties": {
+    "slug": { "type": "string" },
+    "title": { "type": "string" },
+    "body": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["added", "fixed", "improved", "deprecated", "removed", "none"]
+    },
+    "hidden": { "type": "boolean", "default": false },
+    "publishedAt": { "type": "string", "format": "date-time" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}

@@ -2,13 +2,16 @@ openapi: 3.1.0
 info:
   title: ReadMe API
   description: >-
-    The ReadMe API lets you programmatically control your ReadMe developer hub.
-    You can manage API definitions, API reference pages, guides, changelogs,
-    custom pages, categories, branches, images, recipes, and search.
+    The ReadMe API (v2) lets you programmatically control your ReadMe developer
+    hub. It manages API definitions, API reference pages, guides, changelog,
+    custom pages, categories, branches (versions), images, recipes, and search.
   version: '2.0'
   contact:
     name: ReadMe Support
     url: https://docs.readme.com
+  license:
+    name: Proprietary
+    url: https://readme.com/tos
 servers:
   - url: https://api.readme.com/v2
     description: ReadMe API v2 base URL
@@ -31,18 +34,25 @@ tags:
     description: Manage versions and branches
   - name: Images
     description: Upload and manage images
+  - name: Recipes
+    description: Manage interactive recipe content
   - name: Search
     description: Search knowledge base content
   - name: API Keys
     description: Manage ReadMe API keys
 paths:
-  /api-specification:
+  /branches/{branch}/apis:
     get:
       tags:
         - APIs
-      summary: List API specifications
-      description: Retrieve metadata for API specifications uploaded to a project.
+      summary: List API Definitions
+      description: Retrieve metadata for API definitions on a branch.
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: perPage
           in: query
           schema:
@@ -56,33 +66,49 @@ paths:
             type: integer
             minimum: 1
             default: 1
-        - name: x-readme-version
-          in: header
+      responses:
+        '200':
+          description: Successful retrieval
+        '401':
+          description: Unauthorized
+        '404':
+          description: Branch not found
+    post:
+      tags:
+        - APIs
+      summary: Upload An API Definition
+      responses:
+        '201':
+          description: Created
+  /branches/{branch}/apis/{id}:
+    get:
+      tags:
+        - APIs
+      summary: Get An API Definition
+      parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: Successful retrieval
-        '400':
-          description: Missing version parameter
-        '401':
-          description: Unauthorized
-        '404':
-          description: Version not found
-    post:
-      tags:
-        - APIs
-      summary: Upload an API specification
-      responses:
-        '201':
-          description: Created
-  /api-specification/{id}:
+          description: API definition
     put:
       tags:
         - APIs
-      summary: Update an API specification
+      summary: Update An API Definition
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: id
           in: path
           required: true
@@ -94,8 +120,13 @@ paths:
     delete:
       tags:
         - APIs
-      summary: Delete an API specification
+      summary: Delete An API Definition
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: id
           in: path
           required: true
@@ -104,27 +135,44 @@ paths:
       responses:
         '204':
           description: Deleted
-  /docs:
+  /branches/{branch}/guides:
     get:
       tags:
         - Guides
-      summary: List guide pages
+      summary: List Guide Pages
+      parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: List of guides
     post:
       tags:
         - Guides
-      summary: Create a guide page
+      summary: Create A Guide Page
+      parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '201':
           description: Created
-  /docs/{slug}:
+  /branches/{branch}/guides/{slug}:
     get:
       tags:
         - Guides
-      summary: Get a guide by slug
+      summary: Get A Guide By Slug
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -136,8 +184,13 @@ paths:
     put:
       tags:
         - Guides
-      summary: Update a guide
+      summary: Update A Guide
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -149,8 +202,13 @@ paths:
     delete:
       tags:
         - Guides
-      summary: Delete a guide
+      summary: Delete A Guide
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -159,27 +217,44 @@ paths:
       responses:
         '204':
           description: Deleted
-  /changelogs:
+  /branches/{branch}/changelogs:
     get:
       tags:
         - Changelog
-      summary: List changelog posts
+      summary: List Changelog Posts
+      parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Changelog posts
     post:
       tags:
         - Changelog
-      summary: Create a changelog post
+      summary: Create A Changelog Post
+      parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '201':
           description: Created
-  /changelogs/{slug}:
+  /branches/{branch}/changelogs/{slug}:
     get:
       tags:
         - Changelog
-      summary: Get a changelog post
+      summary: Get A Changelog Post
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -191,8 +266,13 @@ paths:
     put:
       tags:
         - Changelog
-      summary: Update a changelog post
+      summary: Update A Changelog Post
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -204,8 +284,13 @@ paths:
     delete:
       tags:
         - Changelog
-      summary: Delete a changelog post
+      summary: Delete A Changelog Post
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -214,27 +299,44 @@ paths:
       responses:
         '204':
           description: Deleted
-  /custompages:
+  /branches/{branch}/custom_pages:
     get:
       tags:
         - Custom Pages
-      summary: List custom pages
+      summary: List Custom Pages
+      parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Custom pages
     post:
       tags:
         - Custom Pages
-      summary: Create a custom page
+      summary: Create A Custom Page
+      parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '201':
           description: Created
-  /custompages/{slug}:
+  /branches/{branch}/custom_pages/{slug}:
     get:
       tags:
         - Custom Pages
-      summary: Get a custom page
+      summary: Get A Custom Page
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -246,8 +348,13 @@ paths:
     put:
       tags:
         - Custom Pages
-      summary: Update a custom page
+      summary: Update A Custom Page
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -259,8 +366,13 @@ paths:
     delete:
       tags:
         - Custom Pages
-      summary: Delete a custom page
+      summary: Delete A Custom Page
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -269,27 +381,44 @@ paths:
       responses:
         '204':
           description: Deleted
-  /categories:
+  /branches/{branch}/categories:
     get:
       tags:
         - Categories
-      summary: List categories
+      summary: List Categories
+      parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Categories
     post:
       tags:
         - Categories
-      summary: Create a category
+      summary: Create A Category
+      parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '201':
           description: Created
-  /categories/{slug}:
+  /branches/{branch}/categories/{slug}:
     get:
       tags:
         - Categories
-      summary: Get a category
+      summary: Get A Category
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -301,8 +430,13 @@ paths:
     put:
       tags:
         - Categories
-      summary: Update a category
+      summary: Update A Category
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -314,8 +448,13 @@ paths:
     delete:
       tags:
         - Categories
-      summary: Delete a category
+      summary: Delete A Category
       parameters:
+        - name: branch
+          in: path
+          required: true
+          schema:
+            type: string
         - name: slug
           in: path
           required: true
@@ -324,41 +463,41 @@ paths:
       responses:
         '204':
           description: Deleted
-  /version:
+  /branches:
     get:
       tags:
         - Branches
-      summary: List versions
+      summary: List Branches
       responses:
         '200':
-          description: Versions list
+          description: Branches list
     post:
       tags:
         - Branches
-      summary: Create a version
+      summary: Create A Branch
       responses:
         '201':
           description: Created
-  /version/{versionId}:
+  /branches/{branch}:
     get:
       tags:
         - Branches
-      summary: Get a version
+      summary: Get A Branch
       parameters:
-        - name: versionId
+        - name: branch
           in: path
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: Version
+          description: Branch
     put:
       tags:
         - Branches
-      summary: Update a version
+      summary: Update A Branch
       parameters:
-        - name: versionId
+        - name: branch
           in: path
           required: true
           schema:
@@ -369,9 +508,9 @@ paths:
     delete:
       tags:
         - Branches
-      summary: Delete a version
+      summary: Delete A Branch
       parameters:
-        - name: versionId
+        - name: branch
           in: path
           required: true
           schema:
@@ -383,17 +522,72 @@ paths:
     post:
       tags:
         - Images
-      summary: Upload an image
+      summary: Upload An Image
       responses:
         '201':
           description: Image uploaded
+  /recipes:
+    get:
+      tags:
+        - Recipes
+      summary: List Recipes
+      responses:
+        '200':
+          description: Recipes
+    post:
+      tags:
+        - Recipes
+      summary: Create A Recipe
+      responses:
+        '201':
+          description: Created
+  /recipes/{slug}:
+    get:
+      tags:
+        - Recipes
+      summary: Get A Recipe
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recipe
+    put:
+      tags:
+        - Recipes
+      summary: Update A Recipe
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Updated
+    delete:
+      tags:
+        - Recipes
+      summary: Delete A Recipe
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Deleted
   /search:
     get:
       tags:
         - Search
-      summary: Search knowledge base
+      summary: Search Knowledge Base
       parameters:
-        - name: search
+        - name: q
           in: query
           required: true
           schema:
@@ -405,14 +599,14 @@ paths:
     get:
       tags:
         - API Keys
-      summary: List API keys
+      summary: List API Keys
       responses:
         '200':
           description: API keys
     post:
       tags:
         - API Keys
-      summary: Create an API key
+      summary: Create An API Key
       responses:
         '201':
           description: Created
@@ -420,7 +614,7 @@ paths:
     delete:
       tags:
         - API Keys
-      summary: Delete an API key
+      summary: Delete An API Key
       parameters:
         - name: id
           in: path
@@ -435,4 +629,97 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-      description: Use your ReadMe API key as a Bearer token.
+      description: Use your ReadMe API key as a Bearer token in the Authorization header.
+  schemas:
+    APIDefinition:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        version:
+          type: string
+        source:
+          type: string
+          description: api | upload | url | rdme
+        updatedAt:
+          type: string
+          format: date-time
+    Guide:
+      type: object
+      properties:
+        slug:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        category:
+          type: string
+        hidden:
+          type: boolean
+        updatedAt:
+          type: string
+          format: date-time
+    ChangelogPost:
+      type: object
+      properties:
+        slug:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        type:
+          type: string
+          description: added | fixed | improved | deprecated | removed
+        publishedAt:
+          type: string
+          format: date-time
+    CustomPage:
+      type: object
+      properties:
+        slug:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        htmlmode:
+          type: boolean
+    Category:
+      type: object
+      properties:
+        slug:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          description: guide | reference
+        order:
+          type: integer
+    Branch:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isStable:
+          type: boolean
+        isBeta:
+          type: boolean
+        isDeprecated:
+          type: boolean
+    APIKey:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        createdAt:
+          type: string
+          format: date-time

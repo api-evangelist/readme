@@ -1,0 +1,74 @@
+{
+  "title": "ReadMe Developer Hub Structure",
+  "description": "The logical content structure of a ReadMe-managed developer hub. Branches contain the versioned content tree; everything inside lives under a branch.",
+  "structure": {
+    "project": {
+      "branches": [
+        {
+          "id": "string",
+          "name": "string (e.g. v1, v2, stable)",
+          "apiDefinitions": [
+            { "id": "string", "title": "string", "source": "api|upload|url|rdme" }
+          ],
+          "guides": {
+            "categories": [
+              {
+                "slug": "string",
+                "title": "string",
+                "pages": [
+                  { "slug": "string", "title": "string", "parentDoc": "slug|null" }
+                ]
+              }
+            ]
+          },
+          "reference": {
+            "categories": [
+              {
+                "slug": "string",
+                "title": "string",
+                "pages": [
+                  { "slug": "string", "title": "string", "operation": "OpenAPI op ref" }
+                ]
+              }
+            ]
+          },
+          "changelog": [
+            { "slug": "string", "title": "string", "type": "added|fixed|improved|deprecated|removed" }
+          ],
+          "customPages": [
+            { "slug": "string", "title": "string", "htmlmode": "boolean" }
+          ],
+          "recipes": [
+            { "slug": "string", "title": "string" }
+          ]
+        }
+      ],
+      "apiKeys": [
+        { "id": "string", "label": "string" }
+      ],
+      "integrations": {
+        "git": {
+          "platform": "github|gitlab",
+          "repository": "owner/repo",
+          "biDirectional": true
+        },
+        "ai": {
+          "agent": true,
+          "linter": true,
+          "docsAudit": true,
+          "askAI": "optional add-on",
+          "githubAIWriter": true,
+          "inlineAI": true
+        },
+        "mcp": {
+          "readmeMcpServer": "https://mcp.readme.com",
+          "projectMcpServer": "auto-provisioned per project"
+        }
+      },
+      "metrics": {
+        "developerDashboard": true,
+        "apiLogIngestion": "https://metrics.readme.io/v1/request"
+      }
+    }
+  }
+}

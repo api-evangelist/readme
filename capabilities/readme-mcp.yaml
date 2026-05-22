@@ -1,0 +1,111 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ReadMe MCP — Search, Read, Update Docs
+  description: Capability binding for ReadMe's Model Context Protocol surface. Wraps the ReadMe-hosted MCP server
+    that lets AI tools (Claude, Cursor, IDEs, CI pipelines) search, read, and update ReadMe documentation through
+    natural language, plus the per-project MCP server that ReadMe auto-provisions for each customer hub so end
+    users' AI tools can read, search, and call that project's API directly.
+  tags:
+  - Readme
+  - MCP
+  - AI
+  - Agents
+  created: '2026-05-22'
+  modified: '2026-05-22'
+binds:
+- namespace: env
+  keys:
+    README_API_KEY: README_API_KEY
+    README_MCP_URL: README_MCP_URL
+    README_PROJECT_MCP_URL: README_PROJECT_MCP_URL
+capability:
+  consumes:
+  - type: mcp
+    namespace: readme-mcp
+    baseUri: '{{env.README_MCP_URL}}'
+    transport: http
+    description: ReadMe-hosted MCP server. Operates against the calling user's ReadMe account; tools include
+      docs search, page read, page update, branch operations, and changelog post creation.
+    authentication:
+      type: bearer
+      token: '{{env.README_API_KEY}}'
+    tools:
+    - name: search-docs
+      description: Search guides, reference, and changelog content across the project.
+      hints:
+        readOnly: true
+        idempotent: true
+    - name: read-page
+      description: Read a guide, reference page, custom page, or changelog post by slug.
+      hints:
+        readOnly: true
+        idempotent: true
+    - name: update-page
+      description: Update an existing guide, reference page, or changelog post.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+    - name: create-page
+      description: Create a new guide, custom page, or changelog post.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+    - name: list-branches
+      description: List branches (versions) on the project.
+      hints:
+        readOnly: true
+        idempotent: true
+  - type: mcp
+    namespace: readme-project-mcp
+    baseUri: '{{env.README_PROJECT_MCP_URL}}'
+    transport: http
+    description: Per-customer project MCP server auto-provisioned by ReadMe. Mirrors the customer's published
+      OpenAPI as MCP tools so an end user's AI client can call the customer's API directly from chat.
+    authentication:
+      type: bearer
+      token: '{{env.README_API_KEY}}'
+    tools:
+    - name: list-api-operations
+      description: List the operations exposed by the project's published OpenAPI definition.
+      hints:
+        readOnly: true
+        idempotent: true
+    - name: call-api-operation
+      description: Invoke a published operation through the project's MCP server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+  exposes:
+  - type: mcp
+    namespace: readme-mcp-bridge
+    port: 9091
+    transport: http
+    description: Bridge MCP adapter that re-exposes the upstream ReadMe MCP tools through this capability.
+    tools:
+    - name: search-readme-docs
+      description: Search ReadMe documentation.
+      call: readme-mcp.search-docs
+      hints:
+        readOnly: true
+        idempotent: true
+    - name: read-readme-page
+      description: Read a ReadMe page.
+      call: readme-mcp.read-page
+      hints:
+        readOnly: true
+        idempotent: true
+    - name: update-readme-page
+      description: Update a ReadMe page.
+      call: readme-mcp.update-page
+      hints:
+        readOnly: false
+        idempotent: true
+    - name: create-readme-page
+      description: Create a new ReadMe page or changelog post.
+      call: readme-mcp.create-page
+      hints:
+        readOnly: false
+        idempotent: false

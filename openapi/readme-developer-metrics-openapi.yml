@@ -2,13 +2,15 @@ openapi: 3.1.0
 info:
   title: ReadMe Developer Metrics API
   description: >-
-    The ReadMe Developer Metrics API provides endpoints for sending API logs
-    and retrieving analytics data including page quality scores, page view
-    statistics, and search analytics. It powers the Developer Dashboard.
+    The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts
+    API request logs from Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and
+    exposes analytics including page quality scores, page view statistics, and
+    search analytics so teams can investigate API usage by key or email and
+    debug requests in real time.
   version: '1.0'
   contact:
     name: ReadMe Support
-    url: https://readme.com/developer-dashboard
+    url: https://docs.readme.com
 servers:
   - url: https://metrics.readme.io/v1
     description: ReadMe Metrics API
@@ -16,26 +18,36 @@ security:
   - basicAuth: []
 tags:
   - name: Metrics
-    description: Send and receive API request metrics
+    description: Send API request metrics from server-side SDKs
   - name: Analytics
-    description: Page view and search analytics
+    description: Page view, quality, and search analytics
 paths:
   /request:
     post:
       tags:
         - Metrics
-      summary: Submit API request logs
-      description: Send API request and response metadata to ReadMe Metrics for analysis in the Developer Dashboard.
+      summary: Submit API Request Logs
+      description: Send API request and response metadata (HAR-formatted) to ReadMe Metrics for analysis in the Developer Dashboard.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/MetricsRequest'
       responses:
-        '200':
-          description: Logs accepted
+        '202':
+          description: Logs accepted for processing
         '401':
           description: Unauthorized
+        '400':
+          description: Invalid payload
   /quality:
     get:
       tags:
         - Analytics
-      summary: Retrieve page quality scores
+      summary: Retrieve Page Quality Scores
+      description: Returns quality scores produced by Docs Audit for the project's pages.
       responses:
         '200':
           description: Quality scores
@@ -43,7 +55,18 @@ paths:
     get:
       tags:
         - Analytics
-      summary: Retrieve page view statistics
+      summary: Retrieve Page View Statistics
+      parameters:
+        - name: start
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: end
+          in: query
+          schema:
+            type: string
+            format: date
       responses:
         '200':
           description: Page view stats
@@ -51,7 +74,7 @@ paths:
     get:
       tags:
         - Analytics
-      summary: Retrieve search analytics
+      summary: Retrieve Search Analytics
       responses:
         '200':
           description: Search analytics
@@ -60,4 +83,30 @@ components:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic auth using your ReadMe API key as the username.
+      description: HTTP Basic auth using your ReadMe API key as the username (password blank).
+  schemas:
+    MetricsRequest:
+      type: object
+      description: HAR-formatted log entry submitted by a ReadMe Metrics SDK.
+      properties:
+        _id:
+          type: string
+        group:
+          type: object
+          properties:
+            id:
+              type: string
+            label:
+              type: string
+            email:
+              type: string
+        clientIPAddress:
+          type: string
+        development:
+          type: boolean
+        request:
+          type: object
+          description: HAR request object
+        response:
+          type: object
+          description: HAR response object

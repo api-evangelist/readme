@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.readme.com/v2/branches/stable/apis?perPage=10&page=1",
+    "headers": {
+      "Authorization": "Bearer rdme_xxx",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "5f3a2b1c9d8e7f6a5b4c3d2e",
+          "title": "Petstore API",
+          "version": "1.0.0",
+          "source": "rdme",
+          "type": "openapi",
+          "filename": "petstore.yaml",
+          "updatedAt": "2026-05-18T14:22:00Z"
+        },
+        {
+          "id": "5f3a2b1c9d8e7f6a5b4c3d2f",
+          "title": "Internal Admin API",
+          "version": "2.1.0",
+          "source": "upload",
+          "type": "openapi",
+          "filename": "admin.yaml",
+          "updatedAt": "2026-05-12T09:14:00Z"
+        }
+      ],
+      "paging": { "page": 1, "perPage": 10, "total": 2 }
+    }
+  }
+}

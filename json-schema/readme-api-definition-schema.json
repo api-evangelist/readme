@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/json-schema/readme-api-definition-schema.json",
+  "title": "ReadMe API Definition",
+  "description": "An OpenAPI/Swagger/Postman definition uploaded to a ReadMe branch.",
+  "type": "object",
+  "required": ["id", "title"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "version": { "type": "string" },
+    "branch": { "type": "string" },
+    "source": {
+      "type": "string",
+      "enum": ["api", "upload", "url", "rdme"],
+      "description": "How the definition was added to ReadMe."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["openapi", "swagger", "postman"]
+    },
+    "filename": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}

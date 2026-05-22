@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.readme.com/v2/branches/stable/changelogs",
+    "headers": {
+      "Authorization": "Bearer rdme_xxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "title": "MCP Server GA",
+      "slug": "mcp-server-ga",
+      "type": "added",
+      "body": "We've launched the ReadMe MCP server so your AI tools can search, read, and update your docs."
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "slug": "mcp-server-ga",
+      "title": "MCP Server GA",
+      "type": "added",
+      "publishedAt": "2026-05-22T16:03:00Z"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.readme.com/v2/search?q=authentication",
+    "headers": {
+      "Authorization": "Bearer rdme_xxx"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "results": [
+        { "slug": "authentication", "title": "Authentication", "type": "guide" },
+        { "slug": "api-keys", "title": "Managing API Keys", "type": "guide" },
+        { "slug": "list-api-keys", "title": "List API Keys", "type": "reference" }
+      ],
+      "total": 3
+    }
+  }
+}

@@ -1,0 +1,89 @@
+vocabulary: ReadMe Vocabulary
+description: Controlled vocabulary for the ReadMe developer hub platform, covering content surfaces (guides,
+  reference, changelog), AI features, the MCP layer, branching/versioning, and the developer metrics surface.
+provider: ReadMe
+providerId: readme
+created: '2026-05-22'
+modified: '2026-05-22'
+terms:
+  - term: Project
+    definition: A ReadMe-hosted developer hub. The top-level container for content, settings, and integrations.
+  - term: Hub
+    definition: Marketing name for a published ReadMe project, including custom domain, theme, and navigation.
+  - term: Branch
+    definition: A versioned line of ReadMe content. Replaces the legacy "version" concept and underpins
+      branching, review, and merge workflows.
+  - term: API Definition
+    definition: An OpenAPI, Swagger, or Postman document uploaded to a branch. Drives the API reference,
+      Try-It console, and the project's MCP server.
+  - term: API Reference
+    definition: Auto-rendered, interactive documentation generated from an API Definition.
+  - term: Try-It
+    definition: The interactive console embedded in API reference pages that issues live requests against the
+      provider's API.
+  - term: Guide
+    definition: A knowledge-base page in ReadMe's flavored Markdown / MDX, grouped under a Category.
+  - term: Recipe
+    definition: A step-by-step interactive walk-through pairing prose and live API calls.
+  - term: Changelog
+    definition: A timestamped post on a branch describing added, fixed, improved, deprecated, or removed
+      functionality.
+  - term: Custom Page
+    definition: A standalone page (Markdown or raw HTML) outside the guides/reference tree.
+  - term: Category
+    definition: A sidebar grouping that organizes Guides or Reference pages.
+  - term: Reusable Content
+    definition: Blocks of content reused across pages (Pro+) or projects (Enterprise Group library).
+  - term: MDX Component
+    definition: A custom React component embeddable in ReadMe Markdown (Pro+).
+  - term: Bi-Directional Sync
+    definition: Two-way connection between a ReadMe project and a Git repository (GitHub or GitLab) so edits
+      flow in either direction.
+  - term: rdme
+    definition: ReadMe's official command-line interface and GitHub Action for syncing OpenAPI definitions
+      and content into a project.
+  - term: Metrics SDK
+    definition: Server-side library (Node.js, Python, Ruby, PHP, .NET) that captures API request/response
+      logs and POSTs them as HAR entries to the Metrics API.
+  - term: Developer Dashboard
+    definition: ReadMe's UI for investigating per-key / per-email API usage backed by Metrics SDK logs.
+  - term: My Requests
+    definition: End-user view of their recent API requests, rendered directly inside the docs.
+  - term: Personalized Docs Webhook
+    definition: Customer-implemented webhook that returns the logged-in user's API keys and variables so
+      ReadMe can pre-fill the docs.
+  - term: Agent
+    definition: ReadMe's AI documentation assistant that drafts and edits Guides, API Reference, and Custom
+      Pages, supporting multi-page edits and multiple chat windows.
+  - term: Inline AI
+    definition: In-editor selection-based AI rewriting (shorten, expand, improve).
+  - term: AI Linter
+    definition: Style-guide enforcement powered by AI; flags pages that fail the project's custom rules.
+  - term: Docs Audit
+    definition: Project-wide scoring of pages against a customizable style guide.
+  - term: GitHub AI Writer
+    definition: GitHub integration that automatically proposes documentation updates when a pull request
+      changes the codebase.
+  - term: Ask AI
+    definition: End-user-facing AI Q&A assistant powered by OpenAI, available as a $150/mo add-on.
+  - term: MCP
+    definition: Model Context Protocol — the standard ReadMe uses to expose docs and APIs to AI tools.
+  - term: ReadMe MCP Server
+    definition: ReadMe-hosted MCP server letting AI tools search, read, and update ReadMe documentation.
+  - term: Project MCP Server
+    definition: Per-customer MCP server auto-provisioned by ReadMe so end-user AI tools can read, search,
+      and call that project's API.
+  - term: LLMs.txt
+    definition: Machine-readable index of all pages (Markdown) and endpoints (OpenAPI) published at
+      /llms.txt to control how AI language models interpret a hub's documentation.
+  - term: Broken Link Checker
+    definition: Built-in tool that scans the project for broken internal and external links.
+  - term: Enterprise Group
+    definition: Enterprise tier construct that combines multiple child projects under one parent hub with
+      shared navigation, design, and reusable content.
+  - term: Personalized Docs
+    definition: Mode in which the docs are pre-filled with the logged-in user's API key, variables, and
+      request history.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

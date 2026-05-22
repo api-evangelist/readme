@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/json-schema/readme-guide-schema.json",
+  "title": "ReadMe Guide",
+  "description": "A knowledge base guide page rendered in a ReadMe developer hub.",
+  "type": "object",
+  "required": ["slug", "title", "body"],
+  "properties": {
+    "slug": { "type": "string" },
+    "title": { "type": "string" },
+    "body": {
+      "type": "string",
+      "description": "ReadMe-flavored Markdown / MDX body content."
+    },
+    "category": { "type": "string" },
+    "parentDoc": { "type": ["string", "null"] },
+    "hidden": { "type": "boolean", "default": false },
+    "order": { "type": "integer" },
+    "branch": { "type": "string" },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "image": { "type": "string" }
+      }
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}
