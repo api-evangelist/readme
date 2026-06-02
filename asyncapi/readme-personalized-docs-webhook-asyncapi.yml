@@ -1,0 +1,267 @@
+asyncapi: 2.6.0
+info:
+  title: ReadMe Personalized Docs Webhook
+  version: 1.0.0
+  description: >-
+    AsyncAPI 2.6 description of ReadMe's Personalized Docs Webhook surface.
+
+
+    The Personalized Docs Webhook is the integration that lets ReadMe inject a
+    logged-in end user's account data into a project's hosted developer hub
+    (API Reference, Try-It console, Recipes) so that fields such as API keys,
+    server variables, and Basic Auth credentials are pre-filled with the user's
+    own values.
+
+
+    Delivery semantics (documented at
+    https://docs.readme.com/main/docs/personalized-docs-webhook):
+
+
+      * Trigger: a user signs in to a ReadMe-hosted developer hub that has the
+        Personalized Docs Webhook configured.
+      * Transport: HTTPS `POST` to the customer-configured webhook endpoint
+        registered in the project's ReadMe dashboard.
+      * Request content type: `application/json`.
+      * Request body: a JSON object containing the signed-in user's `email`.
+      * `User-Agent`: `ReadMe`.
+      * Signature header: `ReadMe-Signature` carries a Stripe-style
+        comma-separated value of the form `t=<unix-timestamp-ms>,v0=<hex>`
+        where the HMAC-SHA256 of `<t>.<JSON-body>` is computed with the
+        project's webhook secret (from the "Set Up API Keys" page in the
+        Developer Dashboard). The official `readmeio` libraries
+        (`verifyWebhook` in JavaScript, PHP, Python, and C#) reject signatures
+        that are missing, more than thirty minutes old, or do not match.
+      * Expected response: the customer's server responds `200 OK` with a JSON
+        object describing the user. ReadMe merges those fields into the rendered
+        docs (e.g. selecting `apiKey`, populating server variables, filling
+        Basic Auth or GraphQL bearer credentials, exposing arbitrary
+        `parameters` to the API Reference).
+
+
+    Only one webhook event is documented on ReadMe's public docs: the user-data
+    lookup triggered at sign-in. ReadMe's Metrics SDKs ship a `verifyWebhook`
+    helper that validates exactly this single event, and the public docs do not
+    describe any other outbound webhook surface as of this writing.
+  contact:
+    name: API Evangelist
+    url: https://apievangelist.com
+    email: kin@apievangelist.com
+  license:
+    name: Documentation copyright ReadMe, Inc.
+    url: https://readme.com/tos
+  x-source-documentation:
+    - https://docs.readme.com/main/docs/personalized-docs-webhook
+    - https://docs.readme.com/main/docs/user-data-options
+    - https://docs.readme.com/main/docs/personalized-docs
+    - https://github.com/readmeio/metrics-sdks
+
+defaultContentType: application/json
+
+servers:
+  subscriber:
+    url: '{webhook_url}'
+    protocol: https
+    description: >-
+      The customer-hosted HTTPS endpoint registered on the Personalized Docs
+      Webhook configuration page in the ReadMe project's dashboard. ReadMe
+      POSTs the user-lookup payload to this URL whenever a reader signs in.
+    variables:
+      webhook_url:
+        default: https://example.com/readme-webhook
+        description: The subscriber's webhook receiver URL.
+
+channels:
+  personalizedDocsWebhook:
+    description: >-
+      User-data lookup channel. When a user signs in to the developer hub,
+      ReadMe POSTs the user's `email` to the configured webhook URL and
+      expects a JSON object of user attributes back in the HTTP response. The
+      attributes are then merged into the rendered docs to personalize
+      authentication credentials, server variables, and parameter defaults.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    subscribe:
+      operationId: onUserSignIn
+      summary: >-
+        A reader signed in to the developer hub; return that user's account
+        data so it can be merged into the personalized docs.
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserDataLookupRequest'
+
+components:
+  messages:
+    UserDataLookupRequest:
+      name: UserDataLookupRequest
+      title: Personalized Docs user-data lookup request
+      summary: >-
+        ReadMe asks the customer's server for the data it should merge into
+        the developer hub for the signed-in user.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/RequestHeaders'
+      bindings:
+        http:
+          bindingVersion: '0.3.0'
+      payload:
+        $ref: '#/components/schemas/UserLookupPayload'
+      examples:
+        - name: signInLookup
+          summary: Body ReadMe sends when a user signs in.
+          payload:
+            email: user@example.com
+
+  schemas:
+    RequestHeaders:
+      type: object
+      description: >-
+        HTTP headers ReadMe sets on the outbound POST to the customer's
+        webhook URL.
+      properties:
+        User-Agent:
+          type: string
+          description: Always `ReadMe`.
+          enum:
+            - ReadMe
+        Content-Type:
+          type: string
+          enum:
+            - application/json
+        ReadMe-Signature:
+          type: string
+          description: >-
+            Comma-separated signature in the form
+            `t=<unix-timestamp-ms>,v0=<hmac-sha256-hex>`. The HMAC is computed
+            over `${t}.${JSON.stringify(body)}` using the project's webhook
+            secret (visible on the "Set Up API Keys" page in the Developer
+            Dashboard). Verify with the `verifyWebhook` helper in the
+            `readmeio` SDK for JavaScript, PHP, Python, or C#. Requests with a
+            missing signature, a timestamp older than 30 minutes, or a
+            mismatched digest must be rejected.
+      required:
+        - ReadMe-Signature
+
+    UserLookupPayload:
+      type: object
+      description: >-
+        JSON body sent by ReadMe to the webhook. The only documented field is
+        the email of the user who just signed in.
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+          description: Email address of the signed-in reader.
+
+    UserDataResponse:
+      type: object
+      description: >-
+        JSON object the customer's webhook returns in the HTTP response.
+        ReadMe merges these fields into the rendered developer hub so
+        authentication credentials, server variables, and parameter defaults
+        are pre-filled for the signed-in user. All fields are optional and
+        unrecognized keys are passed through (custom field names should match
+        the names used in the project's OpenAPI definition - e.g. OAS
+        `securitySchemes` names or server variable names).
+      properties:
+        name:
+          type: string
+          description: Display name shown in the upper-right corner of the hub.
+        email:
+          type: string
+          format: email
+          description: >-
+            Email associated with the user; surfaced in the support forum and
+            elsewhere in the hub.
+        isAdmin:
+          type: boolean
+          description: >-
+            When `true`, grants the user access to the project's admin
+            dashboard.
+        isReadOnly:
+          type: boolean
+          description: >-
+            When `true`, restricts the user to read-only access of the
+            project.
+        apiKey:
+          type: string
+          description: >-
+            Pre-fills the API key authentication field in the API Reference
+            and Try-It console.
+        user:
+          type: string
+          description: Username pre-filled into Basic Auth credentials.
+        pass:
+          type: string
+          description: Password pre-filled into Basic Auth credentials.
+        graphql:
+          type: string
+          description: Bearer token pre-filled into the GraphQL Explorer.
+        keys:
+          type: array
+          description: >-
+            Array of named credential sets. Used when a user has more than
+            one API key (or more than one project) and should be able to
+            select which key to use from a dropdown in the API Reference.
+          items:
+            $ref: '#/components/schemas/UserKey'
+        allowedProjects:
+          type: array
+          description: >-
+            Subdomains (or objects describing per-project access levels) of
+            the ReadMe projects this user is allowed to view. Used in
+            enterprise / multi-project setups.
+          items:
+            oneOf:
+              - type: string
+                description: Project subdomain the user has access to.
+              - type: object
+                description: Per-project access descriptor.
+                additionalProperties: true
+        parameters:
+          type: object
+          description: >-
+            Object of arbitrary parameters that are present in the API
+            Reference (for example server variables such as `region`,
+            default body parameter values, dates, or any other custom value
+            the docs should pre-fill).
+          additionalProperties: true
+      additionalProperties:
+        description: >-
+          Any additional field is treated as a custom value matched by name
+          against the project's OpenAPI definition - for example
+          `oauth2Scheme`, `basicScheme`, `apiKeyScheme`, `cookieApiKeyScheme`,
+          or a server variable name.
+
+    UserKey:
+      type: object
+      description: >-
+        One entry inside the `keys` array. Each entry represents a selectable
+        credential set. The `name` is required so the dropdown has a label;
+        the remaining fields mirror the top-level credential fields.
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Human-readable label shown in the API-key selector dropdown.
+        apiKey:
+          type: string
+          description: API key value for this entry.
+        user:
+          type: string
+          description: Basic Auth username for this entry.
+        pass:
+          type: string
+          description: Basic Auth password for this entry.
+        key:
+          type: string
+          description: Generic key value for this entry.

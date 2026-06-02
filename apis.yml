@@ -13,7 +13,7 @@ type: Index
 access: 3rd-Party
 position: Consumer
 created: '2025-01-08'
-modified: '2026-05-22'
+modified: '2026-05-30'
 tags:
 - Documentation
 - Developer Hub
@@ -112,6 +112,31 @@ apis:
     url: https://docs.readme.com/main/docs/mcp-servers
   - type: NaftikoCapability
     url: capabilities/readme-mcp.yaml
+- aid: readme:personalized-docs-webhook
+  name: ReadMe Personalized Docs Webhook
+  description: ReadMe's Personalized Docs Webhook is the outbound, customer-hosted webhook the developer hub
+    calls at user sign-in to look up a reader's account data. ReadMe POSTs a JSON body containing the user's
+    email, signs the request with a Stripe-style `ReadMe-Signature` header (`t=<unix-ms>,v0=<hmac-sha256-hex>`)
+    using the project's webhook secret, and expects a JSON response describing the user (apiKey, keys array,
+    server-variable parameters, Basic Auth, GraphQL bearer, etc.) which the hub then merges into the rendered
+    API Reference, Try-It console, and Recipes. The single documented event is the user-data lookup.
+  humanURL: https://docs.readme.com/main/docs/personalized-docs-webhook
+  tags:
+  - Webhooks
+  - Personalized Docs
+  - Developer Hub
+  - Authentication
+  properties:
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/personalized-docs-webhook
+  - type: Explainer
+    url: https://docs.readme.com/main/docs/personalized-docs
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/user-data-options
+  - type: SDK
+    url: https://github.com/readmeio/metrics-sdks
+  - type: AsyncAPI
+    url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/asyncapi/readme-personalized-docs-webhook-asyncapi.yml
 common:
 - type: Portal
   url: https://readme.com
