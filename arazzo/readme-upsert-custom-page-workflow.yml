@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Upsert A Custom Page
+  summary: Find a custom page by slug and update it if it exists, otherwise create it.
+  description: >-
+    Keeps a standalone custom page in sync without knowing in advance whether it
+    already exists. The workflow lists custom pages on the branch, branches on
+    whether a page with the target slug is present, and then either updates the
+    matched page or creates a new one. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-custom-page
+  summary: Update a custom page if its slug exists on the branch, otherwise create it.
+  description: >-
+    Lists custom pages on the branch, looks for one whose slug matches the
+    target, and branches to update the existing page or create a new one.
+  inputs:
+    type: object
+    required:
+    - branch
+    - slug
+    - title
+    - body
+    properties:
+      branch:
+        type: string
+        description: The branch (version) the custom page lives on.
+      slug:
+        type: string
+        description: The slug of the custom page to upsert.
+      title:
+        type: string
+        description: The custom page title to write.
+      body:
+        type: string
+        description: The body content to write.
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: listCustomPages
+    description: List custom pages on the branch to detect whether the target slug exists.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages/get'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      customPages: $response.body
+    onSuccess:
+    - name: pageExists
+      type: goto
+      stepId: updateCustomPage
+      criteria:
+      - context: $response.body
+        condition: $[?(@.slug == $inputs.slug)]
+        type: jsonpath
+    - name: pageMissing
+      type: goto
+      stepId: createCustomPage
+      criteria:
+      - context: $response.body
+        condition: $[?(@.slug == $inputs.slug)].length == 0
+        type: jsonpath
+  - stepId: updateCustomPage
+    description: Update the existing custom page identified by slug.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages~1{slug}/put'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: slug
+      in: path
+      value: $inputs.slug
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        body: $inputs.body
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      slug: $response.body#/slug
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createCustomPage
+    description: Create a new custom page when no page with the target slug exists.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        body: $inputs.body
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      slug: $response.body#/slug
+  outputs:
+    updatedSlug: $steps.updateCustomPage.outputs.slug
+    createdSlug: $steps.createCustomPage.outputs.slug

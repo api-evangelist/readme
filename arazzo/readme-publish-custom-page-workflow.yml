@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Publish A Custom Page
+  summary: Create a custom page on a branch and read it back by slug.
+  description: >-
+    Custom pages host standalone documentation content such as landing pages,
+    legal copy, or HTML-mode microsites. This workflow creates a custom page on
+    the target branch and then fetches it back by slug to confirm it was
+    published. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: publish-custom-page
+  summary: Create a custom page then fetch it back by slug.
+  description: >-
+    Creates a custom page on the supplied branch and reads it back by slug to
+    confirm it was published.
+  inputs:
+    type: object
+    required:
+    - branch
+    - title
+    - body
+    properties:
+      branch:
+        type: string
+        description: The branch (version) to publish the custom page on.
+      title:
+        type: string
+        description: The custom page title.
+      body:
+        type: string
+        description: The Markdown (or HTML) body of the custom page.
+      htmlmode:
+        type: boolean
+        description: Whether the body should be rendered as raw HTML.
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: createCustomPage
+    description: Create a custom page on the target branch.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        body: $inputs.body
+        htmlmode: $inputs.htmlmode
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      slug: $response.body#/slug
+  - stepId: getCustomPage
+    description: Read the created custom page back by slug to confirm publication.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages~1{slug}/get'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: slug
+      in: path
+      value: $steps.createCustomPage.outputs.slug
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      title: $response.body#/title
+  outputs:
+    slug: $steps.createCustomPage.outputs.slug
+    title: $steps.getCustomPage.outputs.title

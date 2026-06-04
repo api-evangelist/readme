@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Upsert A Guide Page
+  summary: Find a guide by slug and update it if it exists, otherwise create it.
+  description: >-
+    A common documentation-automation pattern: keep a guide page in sync without
+    knowing in advance whether it already exists. The workflow lists guides on
+    the branch, branches on whether a guide with the target slug is present, and
+    then either updates the matched guide or creates a new one. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-guide
+  summary: Update a guide if its slug already exists on the branch, otherwise create it.
+  description: >-
+    Lists guides on the branch, looks for one whose slug matches the target, and
+    branches to update the existing guide or create a new one.
+  inputs:
+    type: object
+    required:
+    - branch
+    - slug
+    - title
+    - body
+    properties:
+      branch:
+        type: string
+        description: The branch (version) the guide lives on.
+      slug:
+        type: string
+        description: The slug of the guide to upsert.
+      title:
+        type: string
+        description: The guide title to write.
+      body:
+        type: string
+        description: The Markdown body content to write.
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: listGuides
+    description: List guides on the branch to detect whether the target slug exists.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides/get'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      guides: $response.body
+    onSuccess:
+    - name: guideExists
+      type: goto
+      stepId: updateGuide
+      criteria:
+      - context: $response.body
+        condition: $[?(@.slug == $inputs.slug)]
+        type: jsonpath
+    - name: guideMissing
+      type: goto
+      stepId: createGuide
+      criteria:
+      - context: $response.body
+        condition: $[?(@.slug == $inputs.slug)].length == 0
+        type: jsonpath
+  - stepId: updateGuide
+    description: Update the existing guide identified by slug with the new content.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides~1{slug}/put'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: slug
+      in: path
+      value: $inputs.slug
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        body: $inputs.body
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      slug: $response.body#/slug
+      updatedAt: $response.body#/updatedAt
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createGuide
+    description: Create a new guide when no guide with the target slug exists.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        body: $inputs.body
+        hidden: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      slug: $response.body#/slug
+  outputs:
+    updatedSlug: $steps.updateGuide.outputs.slug
+    createdSlug: $steps.createGuide.outputs.slug

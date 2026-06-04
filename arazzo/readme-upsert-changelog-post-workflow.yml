@@ -1,0 +1,127 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Upsert A Changelog Post
+  summary: Find a changelog post by slug and update it if it exists, otherwise create it.
+  description: >-
+    Lets release tooling idempotently publish a changelog entry. The workflow
+    lists changelog posts on the branch, branches on whether a post with the
+    target slug is present, and then either updates the matched post or creates
+    a new one. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-changelog-post
+  summary: Update a changelog post if its slug exists, otherwise create it.
+  description: >-
+    Lists changelog posts on the branch, looks for one whose slug matches the
+    target, and branches to update the existing post or create a new one.
+  inputs:
+    type: object
+    required:
+    - branch
+    - slug
+    - title
+    - body
+    - type
+    properties:
+      branch:
+        type: string
+        description: The branch (version) the changelog post lives on.
+      slug:
+        type: string
+        description: The slug of the changelog post to upsert.
+      title:
+        type: string
+        description: The changelog post title to write.
+      body:
+        type: string
+        description: The Markdown body to write.
+      type:
+        type: string
+        description: The change type (added | fixed | improved | deprecated | removed).
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: listChangelogs
+    description: List changelog posts on the branch to detect whether the target slug exists.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs/get'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      changelogs: $response.body
+    onSuccess:
+    - name: postExists
+      type: goto
+      stepId: updateChangelog
+      criteria:
+      - context: $response.body
+        condition: $[?(@.slug == $inputs.slug)]
+        type: jsonpath
+    - name: postMissing
+      type: goto
+      stepId: createChangelog
+      criteria:
+      - context: $response.body
+        condition: $[?(@.slug == $inputs.slug)].length == 0
+        type: jsonpath
+  - stepId: updateChangelog
+    description: Update the existing changelog post identified by slug.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs~1{slug}/put'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: slug
+      in: path
+      value: $inputs.slug
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        body: $inputs.body
+        type: $inputs.type
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      slug: $response.body#/slug
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createChangelog
+    description: Create a new changelog post when no post with the target slug exists.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        body: $inputs.body
+        type: $inputs.type
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      slug: $response.body#/slug
+  outputs:
+    updatedSlug: $steps.updateChangelog.outputs.slug
+    createdSlug: $steps.createChangelog.outputs.slug

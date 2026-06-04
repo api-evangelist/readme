@@ -138,6 +138,45 @@ apis:
   - type: AsyncAPI
     url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/asyncapi/readme-personalized-docs-webhook-asyncapi.yml
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/readme-create-branch-with-guide-workflow.yml
+    name: ReadMe Stand Up A New Version With Starter Docs
+    summary: Create a branch (version), add a category, and seed it with a first guide.
+  - url: arazzo/readme-create-category-with-guide-workflow.yml
+    name: ReadMe Create A Category With A Guide
+    summary: Create a sidebar category and immediately add a guide page to it.
+  - url: arazzo/readme-publish-changelog-post-workflow.yml
+    name: ReadMe Publish A Changelog Post
+    summary: Create a changelog post on a branch and read it back by slug.
+  - url: arazzo/readme-publish-custom-page-workflow.yml
+    name: ReadMe Publish A Custom Page
+    summary: Create a custom page on a branch and read it back by slug.
+  - url: arazzo/readme-publish-recipe-workflow.yml
+    name: ReadMe Publish A Recipe
+    summary: Create an interactive recipe and read it back by slug.
+  - url: arazzo/readme-release-version-workflow.yml
+    name: ReadMe Cut A Version And Announce It
+    summary: Create a branch, upload its API definition, and post a launch changelog.
+  - url: arazzo/readme-submit-metrics-and-audit-workflow.yml
+    name: ReadMe Submit Metrics And Audit Quality
+    summary: Send API request logs to Metrics, then retrieve page quality scores.
+  - url: arazzo/readme-upload-api-definition-workflow.yml
+    name: ReadMe Upload An API Definition And Verify
+    summary: Upload an OpenAPI definition to a branch and read the created definition back.
+  - url: arazzo/readme-upsert-category-workflow.yml
+    name: ReadMe Upsert A Category
+    summary: Find a category by slug and update it if it exists, otherwise create it.
+  - url: arazzo/readme-upsert-changelog-post-workflow.yml
+    name: ReadMe Upsert A Changelog Post
+    summary: Find a changelog post by slug and update it if it exists, otherwise create it.
+  - url: arazzo/readme-upsert-custom-page-workflow.yml
+    name: ReadMe Upsert A Custom Page
+    summary: Find a custom page by slug and update it if it exists, otherwise create it.
+  - url: arazzo/readme-upsert-guide-workflow.yml
+    name: ReadMe Upsert A Guide Page
+    summary: Find a guide by slug and update it if it exists, otherwise create it.
 - type: Portal
   url: https://readme.com
 - type: GettingStarted

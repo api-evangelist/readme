@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Cut A Version And Announce It
+  summary: Create a branch, upload its API definition, and post a launch changelog.
+  description: >-
+    A full version-launch flow for a ReadMe hub. It creates a new branch, uploads
+    the API definition that powers the reference docs on that branch, and then
+    posts an "added" changelog entry announcing the new version — taking a release
+    from a bare branch to a documented, announced version. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: release-version
+  summary: Create a branch, upload its API definition, and announce it in the changelog.
+  description: >-
+    Creates a branch, uploads an API definition to it, and posts a changelog
+    entry announcing the new version.
+  inputs:
+    type: object
+    required:
+    - branchName
+    - definition
+    - changelogTitle
+    - changelogBody
+    properties:
+      branchName:
+        type: string
+        description: The name of the new branch (version) to create.
+      definition:
+        type: object
+        description: The OpenAPI definition document to upload to the branch.
+      changelogTitle:
+        type: string
+        description: The title of the launch changelog post.
+      changelogBody:
+        type: string
+        description: The Markdown body of the launch changelog post.
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: createBranch
+    description: Create the new branch (version) for the release.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.branchName
+        isStable: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      branchName: $response.body#/name
+  - stepId: uploadDefinition
+    description: Upload the API definition that powers the reference docs on the new branch.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1apis/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $steps.createBranch.outputs.branchName
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        schema: $inputs.definition
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      apiId: $response.body#/id
+  - stepId: announceRelease
+    description: Post an "added" changelog entry announcing the new version.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $steps.createBranch.outputs.branchName
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.changelogTitle
+        body: $inputs.changelogBody
+        type: added
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      changelogSlug: $response.body#/slug
+  outputs:
+    branchName: $steps.createBranch.outputs.branchName
+    apiId: $steps.uploadDefinition.outputs.apiId
+    changelogSlug: $steps.announceRelease.outputs.changelogSlug

@@ -1,0 +1,63 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Submit Metrics And Audit Quality
+  summary: Send API request logs to Metrics, then retrieve page quality scores.
+  description: >-
+    Closes the loop between sending API usage data and reviewing documentation
+    health. The workflow submits HAR-formatted API request logs to the ReadMe
+    Metrics endpoint and then retrieves the project's page quality scores from
+    the analytics endpoint so a team can act on Docs Audit findings. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeMetricsApi
+  url: ../openapi/readme-developer-metrics-openapi.yml
+  type: openapi
+workflows:
+- workflowId: submit-metrics-and-audit
+  summary: Submit API request logs then retrieve page quality scores.
+  description: >-
+    Sends HAR-formatted request logs to the Metrics endpoint and then reads back
+    the project's page quality scores.
+  inputs:
+    type: object
+    required:
+    - logs
+    properties:
+      logs:
+        type: array
+        description: An array of HAR-formatted Metrics request log entries.
+        items:
+          type: object
+      basicAuth:
+        type: string
+        description: HTTP Basic credential (base64 of "apiKey:") for the Metrics API.
+  steps:
+  - stepId: submitLogs
+    description: Submit HAR-formatted API request logs to the Metrics endpoint.
+    operationPath: '{$sourceDescriptions.readmeMetricsApi.url}#/paths/~1request/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Basic $inputs.basicAuth"
+    requestBody:
+      contentType: application/json
+      payload: $inputs.logs
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      statusCode: $statusCode
+  - stepId: getQualityScores
+    description: Retrieve page quality scores from Docs Audit to act on findings.
+    operationPath: '{$sourceDescriptions.readmeMetricsApi.url}#/paths/~1quality/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Basic $inputs.basicAuth"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      quality: $response.body
+  outputs:
+    quality: $steps.getQualityScores.outputs.quality

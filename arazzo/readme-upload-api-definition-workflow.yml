@@ -1,0 +1,77 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Upload An API Definition And Verify
+  summary: Upload an OpenAPI definition to a branch and read the created definition back.
+  description: >-
+    Publishing an API reference to a ReadMe hub starts with uploading an API
+    definition to a branch. This flow uploads the definition and then fetches
+    the created definition by id to confirm it was ingested and is available on
+    the branch. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upload-api-definition
+  summary: Upload an API definition to a branch then fetch it back by id.
+  description: >-
+    Uploads an API definition to the target branch and reads the created
+    definition back by its id to confirm successful ingestion.
+  inputs:
+    type: object
+    required:
+    - branch
+    - definition
+    properties:
+      branch:
+        type: string
+        description: The branch (version) to upload the API definition to.
+      definition:
+        type: object
+        description: The OpenAPI definition document to upload.
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: uploadDefinition
+    description: Upload the API definition to the target branch.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1apis/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        schema: $inputs.definition
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      apiId: $response.body#/id
+  - stepId: getDefinition
+    description: Read the created API definition back by id to confirm ingestion.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1apis~1{id}/get'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: id
+      in: path
+      value: $steps.uploadDefinition.outputs.apiId
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      title: $response.body#/title
+      version: $response.body#/version
+      source: $response.body#/source
+  outputs:
+    apiId: $steps.uploadDefinition.outputs.apiId
+    title: $steps.getDefinition.outputs.title

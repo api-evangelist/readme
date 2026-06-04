@@ -1,0 +1,70 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Publish A Recipe
+  summary: Create an interactive recipe and read it back by slug.
+  description: >-
+    Recipes are ReadMe's interactive, step-by-step API walkthroughs. This
+    workflow creates a recipe and then fetches it back by slug to confirm it was
+    published and is retrievable. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: publish-recipe
+  summary: Create a recipe then fetch it back by slug.
+  description: >-
+    Creates an interactive recipe and reads it back by slug to confirm
+    publication.
+  inputs:
+    type: object
+    required:
+    - title
+    - slug
+    properties:
+      title:
+        type: string
+        description: The recipe title.
+      slug:
+        type: string
+        description: The slug to identify and retrieve the recipe.
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: createRecipe
+    description: Create an interactive recipe.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1recipes/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        slug: $inputs.slug
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      slug: $inputs.slug
+  - stepId: getRecipe
+    description: Read the created recipe back by slug to confirm publication.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1recipes~1{slug}/get'
+    parameters:
+    - name: slug
+      in: path
+      value: $steps.createRecipe.outputs.slug
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      title: $response.body#/title
+  outputs:
+    slug: $steps.createRecipe.outputs.slug
+    title: $steps.getRecipe.outputs.title

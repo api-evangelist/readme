@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Create A Category With A Guide
+  summary: Create a sidebar category and immediately add a guide page to it.
+  description: >-
+    A foundational documentation-structuring flow for a ReadMe developer hub.
+    It first creates a sidebar category on the target branch, then creates a
+    guide page that belongs to that category, and finally fetches the created
+    guide by slug to confirm it landed where expected. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-category-with-guide
+  summary: Create a category then create a guide inside it and verify the guide.
+  description: >-
+    Creates a category on the supplied branch, creates a guide page assigned to
+    that category, and reads the guide back by slug to confirm creation.
+  inputs:
+    type: object
+    required:
+    - branch
+    - categoryTitle
+    - guideTitle
+    - guideBody
+    properties:
+      branch:
+        type: string
+        description: The branch (version) to create content on (e.g. "stable").
+      categoryTitle:
+        type: string
+        description: The display title for the new category.
+      guideTitle:
+        type: string
+        description: The display title for the new guide page.
+      guideBody:
+        type: string
+        description: The Markdown body content for the guide.
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: createCategory
+    description: >-
+      Create a guide-type sidebar category on the target branch to group the
+      new guide under.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.categoryTitle
+        type: guide
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      categorySlug: $response.body#/slug
+  - stepId: createGuide
+    description: >-
+      Create a guide page on the same branch assigned to the category just
+      created.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.guideTitle
+        body: $inputs.guideBody
+        category: $steps.createCategory.outputs.categorySlug
+        hidden: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      guideSlug: $response.body#/slug
+  - stepId: getGuide
+    description: Read the created guide back by slug to confirm it was published.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides~1{slug}/get'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: slug
+      in: path
+      value: $steps.createGuide.outputs.guideSlug
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      title: $response.body#/title
+      category: $response.body#/category
+  outputs:
+    categorySlug: $steps.createCategory.outputs.categorySlug
+    guideSlug: $steps.createGuide.outputs.guideSlug

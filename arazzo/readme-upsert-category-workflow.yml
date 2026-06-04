@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Upsert A Category
+  summary: Find a category by slug and update it if it exists, otherwise create it.
+  description: >-
+    Keeps a sidebar category in sync without knowing in advance whether it
+    already exists. The workflow lists categories on the branch, branches on
+    whether a category with the target slug is present, and then either updates
+    the matched category or creates a new one. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-category
+  summary: Update a category if its slug exists on the branch, otherwise create it.
+  description: >-
+    Lists categories on the branch, looks for one whose slug matches the target,
+    and branches to update the existing category or create a new one.
+  inputs:
+    type: object
+    required:
+    - branch
+    - slug
+    - title
+    properties:
+      branch:
+        type: string
+        description: The branch (version) the category lives on.
+      slug:
+        type: string
+        description: The slug of the category to upsert.
+      title:
+        type: string
+        description: The category title to write.
+      order:
+        type: integer
+        description: The sidebar ordering position for the category.
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: listCategories
+    description: List categories on the branch to detect whether the target slug exists.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories/get'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      categories: $response.body
+    onSuccess:
+    - name: categoryExists
+      type: goto
+      stepId: updateCategory
+      criteria:
+      - context: $response.body
+        condition: $[?(@.slug == $inputs.slug)]
+        type: jsonpath
+    - name: categoryMissing
+      type: goto
+      stepId: createCategory
+      criteria:
+      - context: $response.body
+        condition: $[?(@.slug == $inputs.slug)].length == 0
+        type: jsonpath
+  - stepId: updateCategory
+    description: Update the existing category identified by slug.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories~1{slug}/put'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: slug
+      in: path
+      value: $inputs.slug
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        order: $inputs.order
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      slug: $response.body#/slug
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createCategory
+    description: Create a new category when no category with the target slug exists.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $inputs.branch
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        type: guide
+        order: $inputs.order
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      slug: $response.body#/slug
+  outputs:
+    updatedSlug: $steps.updateCategory.outputs.slug
+    createdSlug: $steps.createCategory.outputs.slug

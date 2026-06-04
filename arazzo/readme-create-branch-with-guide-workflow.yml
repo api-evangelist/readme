@@ -1,0 +1,107 @@
+arazzo: 1.0.1
+info:
+  title: ReadMe Stand Up A New Version With Starter Docs
+  summary: Create a branch (version), add a category, and seed it with a first guide.
+  description: >-
+    When cutting a new version of an API hub, teams need a fresh branch plus an
+    initial documentation skeleton. This flow creates the branch, creates a
+    sidebar category on it, and then creates a starter guide assigned to that
+    category — producing a ready-to-edit version in a single pass. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: readmeApi
+  url: ../openapi/readme-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-branch-with-guide
+  summary: Create a new branch, a category on it, and a starter guide in the category.
+  description: >-
+    Creates a branch, then a category on the new branch, then a guide page
+    assigned to that category to seed the version with starter content.
+  inputs:
+    type: object
+    required:
+    - branchName
+    - categoryTitle
+    - guideTitle
+    - guideBody
+    properties:
+      branchName:
+        type: string
+        description: The name of the new branch (version) to create (e.g. "v2.1").
+      categoryTitle:
+        type: string
+        description: The display title for the starter category.
+      guideTitle:
+        type: string
+        description: The display title for the starter guide page.
+      guideBody:
+        type: string
+        description: The Markdown body content for the starter guide.
+      apiKey:
+        type: string
+        description: ReadMe API key used as a Bearer token.
+  steps:
+  - stepId: createBranch
+    description: Create a new branch (version) to hold the starter documentation.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.branchName
+        isStable: false
+        isBeta: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      branchName: $response.body#/name
+  - stepId: createCategory
+    description: Create a guide-type category on the newly created branch.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $steps.createBranch.outputs.branchName
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.categoryTitle
+        type: guide
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      categorySlug: $response.body#/slug
+  - stepId: createGuide
+    description: Create a starter guide assigned to the new category.
+    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides/post'
+    parameters:
+    - name: branch
+      in: path
+      value: $steps.createBranch.outputs.branchName
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.apiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.guideTitle
+        body: $inputs.guideBody
+        category: $steps.createCategory.outputs.categorySlug
+        hidden: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      guideSlug: $response.body#/slug
+  outputs:
+    branchName: $steps.createBranch.outputs.branchName
+    categorySlug: $steps.createCategory.outputs.categorySlug
+    guideSlug: $steps.createGuide.outputs.guideSlug
