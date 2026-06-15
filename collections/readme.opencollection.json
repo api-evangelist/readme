@@ -1,0 +1,845 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ReadMe API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/apis",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve metadata for API definitions on a branch."
+        },
+        {
+          "info": {
+            "name": "Upload An API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.readme.com/v2/branches/:branch/apis"
+          },
+          "docs": "Upload An API Definition"
+        },
+        {
+          "info": {
+            "name": "Get An API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/apis/:id",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get An API Definition"
+        },
+        {
+          "info": {
+            "name": "Update An API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.readme.com/v2/branches/:branch/apis/:id",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update An API Definition"
+        },
+        {
+          "info": {
+            "name": "Delete An API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.readme.com/v2/branches/:branch/apis/:id",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete An API Definition"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Guides",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Guide Pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/guides",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Guide Pages"
+        },
+        {
+          "info": {
+            "name": "Create A Guide Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.readme.com/v2/branches/:branch/guides",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create A Guide Page"
+        },
+        {
+          "info": {
+            "name": "Get A Guide By Slug",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/guides/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Guide By Slug"
+        },
+        {
+          "info": {
+            "name": "Update A Guide",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.readme.com/v2/branches/:branch/guides/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Guide"
+        },
+        {
+          "info": {
+            "name": "Delete A Guide",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.readme.com/v2/branches/:branch/guides/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Guide"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Changelog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Changelog Posts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/changelogs",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Changelog Posts"
+        },
+        {
+          "info": {
+            "name": "Create A Changelog Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.readme.com/v2/branches/:branch/changelogs",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create A Changelog Post"
+        },
+        {
+          "info": {
+            "name": "Get A Changelog Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/changelogs/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Changelog Post"
+        },
+        {
+          "info": {
+            "name": "Update A Changelog Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.readme.com/v2/branches/:branch/changelogs/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Changelog Post"
+        },
+        {
+          "info": {
+            "name": "Delete A Changelog Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.readme.com/v2/branches/:branch/changelogs/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Changelog Post"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Custom Pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/custom_pages",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Custom Pages"
+        },
+        {
+          "info": {
+            "name": "Create A Custom Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.readme.com/v2/branches/:branch/custom_pages",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create A Custom Page"
+        },
+        {
+          "info": {
+            "name": "Get A Custom Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/custom_pages/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Custom Page"
+        },
+        {
+          "info": {
+            "name": "Update A Custom Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.readme.com/v2/branches/:branch/custom_pages/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Custom Page"
+        },
+        {
+          "info": {
+            "name": "Delete A Custom Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.readme.com/v2/branches/:branch/custom_pages/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Custom Page"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/categories",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Categories"
+        },
+        {
+          "info": {
+            "name": "Create A Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.readme.com/v2/branches/:branch/categories",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create A Category"
+        },
+        {
+          "info": {
+            "name": "Get A Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch/categories/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Category"
+        },
+        {
+          "info": {
+            "name": "Update A Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.readme.com/v2/branches/:branch/categories/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Category"
+        },
+        {
+          "info": {
+            "name": "Delete A Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.readme.com/v2/branches/:branch/categories/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Category"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Branches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches"
+          },
+          "docs": "List Branches"
+        },
+        {
+          "info": {
+            "name": "Create A Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.readme.com/v2/branches"
+          },
+          "docs": "Create A Branch"
+        },
+        {
+          "info": {
+            "name": "Get A Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/branches/:branch",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Branch"
+        },
+        {
+          "info": {
+            "name": "Update A Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.readme.com/v2/branches/:branch",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Branch"
+        },
+        {
+          "info": {
+            "name": "Delete A Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.readme.com/v2/branches/:branch",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Branch"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload An Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.readme.com/v2/images"
+          },
+          "docs": "Upload An Image"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recipes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/recipes"
+          },
+          "docs": "List Recipes"
+        },
+        {
+          "info": {
+            "name": "Create A Recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.readme.com/v2/recipes"
+          },
+          "docs": "Create A Recipe"
+        },
+        {
+          "info": {
+            "name": "Get A Recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/recipes/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Recipe"
+        },
+        {
+          "info": {
+            "name": "Update A Recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.readme.com/v2/recipes/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Recipe"
+        },
+        {
+          "info": {
+            "name": "Delete A Recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.readme.com/v2/recipes/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Recipe"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Knowledge Base",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search Knowledge Base"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "API Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.readme.com/v2/apikeys"
+          },
+          "docs": "List API Keys"
+        },
+        {
+          "info": {
+            "name": "Create An API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.readme.com/v2/apikeys"
+          },
+          "docs": "Create An API Key"
+        },
+        {
+          "info": {
+            "name": "Delete An API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.readme.com/v2/apikeys/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete An API Key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

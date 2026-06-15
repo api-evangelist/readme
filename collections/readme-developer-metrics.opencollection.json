@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ReadMe Developer Metrics API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit API Request Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metrics.readme.io/v1/request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send API request and response metadata (HAR-formatted) to ReadMe Metrics for analysis in the Developer Dashboard."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Page Quality Scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/quality"
+          },
+          "docs": "Returns quality scores produced by Docs Audit for the project's pages."
+        },
+        {
+          "info": {
+            "name": "Retrieve Page View Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/pageviews",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve Page View Statistics"
+        },
+        {
+          "info": {
+            "name": "Retrieve Search Analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/search"
+          },
+          "docs": "Retrieve Search Analytics"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

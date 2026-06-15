@@ -1,13 +1,13 @@
 aid: readme
 url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/apis.yml
 name: ReadMe
-description: ReadMe is a developer hub platform that helps companies design, document, and operate their APIs. The
-  platform combines hosted API reference (OpenAPI-driven), guides and changelog, bi-directional Git sync (GitHub
-  and GitLab), interactive API explorer, Try-It console, Developer Dashboard with real-time API logs, and a deep
-  layer of AI tooling — including the ReadMe Agent for multi-page editing, Inline AI rewrites, the AI Linter for
-  style-guide enforcement, Docs Audit, GitHub AI Writer for PR-triggered doc updates, Ask AI for end users, and
-  Model Context Protocol (MCP) servers for both ReadMe itself and each customer project so AI tools can search,
-  read, update docs, and call APIs.
+description: >-
+  ReadMe is a developer hub platform that helps companies design, document, and operate their APIs. The platform
+  combines hosted API reference (OpenAPI-driven), guides and changelog, bi-directional Git sync (GitHub and GitLab),
+  interactive API explorer, Try-It console, Developer Dashboard with real-time API logs, and a deep layer of AI tooling
+  — including the ReadMe Agent for multi-page editing, Inline AI rewrites, the AI Linter for style-guide enforcement,
+  Docs Audit, GitHub AI Writer for PR-triggered doc updates, Ask AI for end users, and Model Context Protocol (MCP)
+  servers for both ReadMe itself and each customer project so AI tools can search, read, update docs, and call APIs.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 type: Index
 access: 3rd-Party
@@ -28,9 +28,10 @@ segments:
 apis:
 - aid: readme:readme-api
   name: ReadMe API
-  description: The ReadMe API (v2) lets you programmatically control your ReadMe developer hub. It manages API
-    definitions, API reference pages, guides, changelog, custom pages, categories, branches (versions), images,
-    recipes, and search. Authentication uses a Bearer API key.
+  description: >-
+    The ReadMe API (v2) lets you programmatically control your ReadMe developer hub. It manages API definitions, API
+    reference pages, guides, changelog, custom pages, categories, branches (versions), images, recipes, and search.
+    Authentication uses a Bearer API key.
   humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
   baseURL: https://api.readme.com/v2
   tags:
@@ -45,30 +46,14 @@ apis:
     url: https://docs.readme.com/main/reference/authentication
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/readme-api-keys.yaml
-  - type: NaftikoCapability
-    url: capabilities/readme-apis.yaml
-  - type: NaftikoCapability
-    url: capabilities/readme-branches.yaml
-  - type: NaftikoCapability
-    url: capabilities/readme-categories.yaml
-  - type: NaftikoCapability
-    url: capabilities/readme-changelog.yaml
-  - type: NaftikoCapability
-    url: capabilities/readme-custom-pages.yaml
-  - type: NaftikoCapability
-    url: capabilities/readme-guides.yaml
-  - type: NaftikoCapability
-    url: capabilities/readme-images.yaml
-  - type: NaftikoCapability
-    url: capabilities/readme-search.yaml
+  - url: graphql/readme-graphql.md
+    type: GraphQL
 - aid: readme:developer-metrics-api
   name: ReadMe Developer Metrics API
-  description: The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from
-    Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view
-    statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real
-    time.
+  description: >-
+    The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs
+    (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and
+    search analytics so teams can investigate API usage by key or email and debug requests in real time.
   humanURL: https://docs.readme.com/main/docs/sending-api-logs
   baseURL: https://metrics.readme.io/v1
   tags:
@@ -80,19 +65,17 @@ apis:
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-developer-metrics-openapi.yml
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-developer-metrics-openapi.yml
   - type: SDK
     url: https://github.com/readmeio/metrics-sdks
-  - type: NaftikoCapability
-    url: capabilities/developer-metrics-analytics.yaml
-  - type: NaftikoCapability
-    url: capabilities/developer-metrics-metrics.yaml
 - aid: readme:mcp-server
   name: ReadMe MCP Server
-  description: ReadMe operates a hosted Model Context Protocol (MCP) server that lets AI tools (Claude, Cursor,
-    IDEs, CI pipelines) search, read, and update ReadMe documentation through natural language. ReadMe also
-    auto-provisions a per-project MCP server for every customer so end users' AI tools can read, search, and call
-    that project's API directly.
+  description: >-
+    ReadMe operates a hosted Model Context Protocol (MCP) server that lets AI tools (Claude, Cursor, IDEs, CI
+    pipelines) search, read, and update ReadMe documentation through natural language. ReadMe also auto-provisions a
+    per-project MCP server for every customer so end users' AI tools can read, search, and call that project's API
+    directly.
   humanURL: https://docs.readme.com/main/docs/readmes-mcp-server
   tags:
   - MCP
@@ -110,16 +93,15 @@ apis:
     url: https://docs.readme.com/main/docs/your-projects-mcp-use-cases
   - type: Explainer
     url: https://docs.readme.com/main/docs/mcp-servers
-  - type: NaftikoCapability
-    url: capabilities/readme-mcp.yaml
 - aid: readme:personalized-docs-webhook
   name: ReadMe Personalized Docs Webhook
-  description: ReadMe's Personalized Docs Webhook is the outbound, customer-hosted webhook the developer hub
-    calls at user sign-in to look up a reader's account data. ReadMe POSTs a JSON body containing the user's
-    email, signs the request with a Stripe-style `ReadMe-Signature` header (`t=<unix-ms>,v0=<hmac-sha256-hex>`)
-    using the project's webhook secret, and expects a JSON response describing the user (apiKey, keys array,
-    server-variable parameters, Basic Auth, GraphQL bearer, etc.) which the hub then merges into the rendered
-    API Reference, Try-It console, and Recipes. The single documented event is the user-data lookup.
+  description: >-
+    ReadMe's Personalized Docs Webhook is the outbound, customer-hosted webhook the developer hub calls at user
+    sign-in to look up a reader's account data. ReadMe POSTs a JSON body containing the user's email, signs the
+    request with a Stripe-style `ReadMe-Signature` header (`t=<unix-ms>,v0=<hmac-sha256-hex>`) using the project's
+    webhook secret, and expects a JSON response describing the user (apiKey, keys array, server-variable parameters,
+    Basic Auth, GraphQL bearer, etc.) which the hub then merges into the rendered API Reference, Try-It console, and
+    Recipes. The single documented event is the user-data lookup.
   humanURL: https://docs.readme.com/main/docs/personalized-docs-webhook
   tags:
   - Webhooks
@@ -136,8 +118,11 @@ apis:
   - type: SDK
     url: https://github.com/readmeio/metrics-sdks
   - type: AsyncAPI
-    url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/asyncapi/readme-personalized-docs-webhook-asyncapi.yml
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/asyncapi/readme-personalized-docs-webhook-asyncapi.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/readme/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:

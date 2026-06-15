@@ -1,0 +1,459 @@
+{
+  "item": [
+    {
+      "id": "fb7263e6-9ea9-4861-835b-4f9faa59ee54",
+      "name": "Metrics",
+      "description": {
+        "content": "Send API request metrics from server-side SDKs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a0831937-4d1c-417f-b3fe-94041ef15952",
+          "name": "Submit API Request Logs",
+          "request": {
+            "name": "Submit API Request Logs",
+            "description": {
+              "content": "Send API request and response metadata (HAR-formatted) to ReadMe Metrics for analysis in the Developer Dashboard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"_id\": \"<string>\",\n    \"group\": {\n      \"id\": \"<string>\",\n      \"label\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"clientIPAddress\": \"<string>\",\n    \"development\": \"<boolean>\",\n    \"request\": \"<object>\",\n    \"response\": \"<object>\"\n  },\n  {\n    \"_id\": \"<string>\",\n    \"group\": {\n      \"id\": \"<string>\",\n      \"label\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"clientIPAddress\": \"<string>\",\n    \"development\": \"<boolean>\",\n    \"request\": \"<object>\",\n    \"response\": \"<object>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5e96e92-2155-450b-9c47-b18a17887f1d",
+              "name": "Logs accepted for processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"_id\": \"string\",\n    \"group\": {\n      \"id\": \"string\",\n      \"label\": \"string\",\n      \"email\": \"string\"\n    },\n    \"clientIPAddress\": \"string\",\n    \"development\": false,\n    \"request\": {},\n    \"response\": {}\n  },\n  {\n    \"_id\": \"string\",\n    \"group\": {\n      \"id\": \"string\",\n      \"label\": \"string\",\n      \"email\": \"string\"\n    },\n    \"clientIPAddress\": \"string\",\n    \"development\": false,\n    \"request\": {},\n    \"response\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "afa1b6ab-140a-413e-889a-309f39d2f263",
+              "name": "Invalid payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"_id\": \"string\",\n    \"group\": {\n      \"id\": \"string\",\n      \"label\": \"string\",\n      \"email\": \"string\"\n    },\n    \"clientIPAddress\": \"string\",\n    \"development\": false,\n    \"request\": {},\n    \"response\": {}\n  },\n  {\n    \"_id\": \"string\",\n    \"group\": {\n      \"id\": \"string\",\n      \"label\": \"string\",\n      \"email\": \"string\"\n    },\n    \"clientIPAddress\": \"string\",\n    \"development\": false,\n    \"request\": {},\n    \"response\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8343836f-02ac-4696-a573-63914a83220f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"_id\": \"string\",\n    \"group\": {\n      \"id\": \"string\",\n      \"label\": \"string\",\n      \"email\": \"string\"\n    },\n    \"clientIPAddress\": \"string\",\n    \"development\": false,\n    \"request\": {},\n    \"response\": {}\n  },\n  {\n    \"_id\": \"string\",\n    \"group\": {\n      \"id\": \"string\",\n      \"label\": \"string\",\n      \"email\": \"string\"\n    },\n    \"clientIPAddress\": \"string\",\n    \"development\": false,\n    \"request\": {},\n    \"response\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "05ae9879-f0ec-4c04-a6f1-de84a786943c",
+      "name": "Analytics",
+      "description": {
+        "content": "Page view, quality, and search analytics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8a7f8ae-6802-4863-a24d-67098a9b8459",
+          "name": "Retrieve Page Quality Scores",
+          "request": {
+            "name": "Retrieve Page Quality Scores",
+            "description": {
+              "content": "Returns quality scores produced by Docs Audit for the project's pages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quality"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0494799-9f31-48fc-8aec-21edb88dd480",
+              "name": "Quality scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quality"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d548aef8-fe2b-4b4c-8d63-b0eb5f302ec6",
+          "name": "Retrieve Page View Statistics",
+          "request": {
+            "name": "Retrieve Page View Statistics",
+            "description": {},
+            "url": {
+              "path": [
+                "pageviews"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e96dd39-07f4-42e0-8e95-2aa2fc356c84",
+              "name": "Page view stats",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pageviews"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5eff73c7-3e97-456b-b9de-2af7bac1dd83",
+          "name": "Retrieve Search Analytics",
+          "request": {
+            "name": "Retrieve Search Analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcd5ea81-b6ac-4210-869f-dd92ad35fa3f",
+              "name": "Search analytics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://metrics.readme.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "80c22574-01fc-4f09-afd0-ba7301ad6424",
+    "name": "ReadMe Developer Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real time.\n\nContact Support:\n Name: ReadMe Support",
+      "type": "text/plain"
+    }
+  }
+}

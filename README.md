@@ -2,7 +2,7 @@
 
 ReadMe is a developer hub platform that helps companies design, document, and operate their APIs. The platform combines hosted API reference (OpenAPI-driven), guides and changelog, bi-directional Git sync (GitHub and GitLab), interactive API explorer, Try-It console, Developer Dashboard with real-time API logs, and a deep layer of AI tooling — including the ReadMe Agent for multi-page editing, Inline AI rewrites, the AI Linter for style-guide enforcement, Docs Audit, GitHub AI Writer for PR-triggered doc updates, Ask AI for end users, and Model Context Protocol (MCP) servers for both ReadMe itself and each customer project so AI tools can search, read, update docs, and call APIs.
 
-**URL:** [Visit APIs.yml URL](https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -24,7 +24,7 @@ ReadMe is a developer hub platform that helps companies design, document, and op
 ## Timestamps
 
 - **Created:** 2025-01-08
-- **Modified:** 2026-05-22
+- **Modified:** 2026-05-30
 
 ## APIs
 
@@ -35,22 +35,22 @@ The ReadMe API (v2) lets you programmatically control your ReadMe developer hub.
 - **Human URL:** [https://docs.readme.com/main/reference/intro-to-the-readme-api](https://docs.readme.com/main/reference/intro-to-the-readme-api)
 - **Base URL:** `https://api.readme.com/v2`
 
-**Tags:** Documentation, Developer Hub, Content Management, API Reference
+#### Tags
 
-**Properties**
+- Documentation
+- Developer Hub
+- Content Management
+- API Reference
+
+#### Properties
 
 - [Documentation](https://docs.readme.com/main/reference/intro-to-the-readme-api)
 - [Authentication](https://docs.readme.com/main/reference/authentication)
-- [OpenAPI](openapi/readme-openapi.yml)
-- [Capability — APIs](capabilities/readme-apis.yaml)
-- [Capability — Guides](capabilities/readme-guides.yaml)
-- [Capability — Changelog](capabilities/readme-changelog.yaml)
-- [Capability — Custom Pages](capabilities/readme-custom-pages.yaml)
-- [Capability — Categories](capabilities/readme-categories.yaml)
-- [Capability — Branches](capabilities/readme-branches.yaml)
-- [Capability — Images](capabilities/readme-images.yaml)
-- [Capability — Search](capabilities/readme-search.yaml)
-- [Capability — API Keys](capabilities/readme-api-keys.yaml)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/readme-developer-metrics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/readme-developer-metrics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/readme.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/readme.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### ReadMe Developer Metrics API
 
@@ -59,15 +59,22 @@ The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API 
 - **Human URL:** [https://docs.readme.com/main/docs/sending-api-logs](https://docs.readme.com/main/docs/sending-api-logs)
 - **Base URL:** `https://metrics.readme.io/v1`
 
-**Tags:** Analytics, Metrics, Logging, Developer Dashboard
+#### Tags
 
-**Properties**
+- Analytics
+- Metrics
+- Logging
+- Developer Dashboard
+
+#### Properties
 
 - [Documentation](https://docs.readme.com/main/docs/sending-api-logs)
-- [OpenAPI](openapi/readme-developer-metrics-openapi.yml)
-- [SDK Repo (Metrics SDKs)](https://github.com/readmeio/metrics-sdks)
-- [Capability — Metrics](capabilities/developer-metrics-metrics.yaml)
-- [Capability — Analytics](capabilities/developer-metrics-analytics.yaml)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-developer-metrics-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [SDK](https://github.com/readmeio/metrics-sdks)
+- [Postman Collection](collections/readme-developer-metrics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/readme-developer-metrics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/readme.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/readme.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### ReadMe MCP Server
 
@@ -75,19 +82,53 @@ ReadMe operates a hosted Model Context Protocol (MCP) server that lets AI tools 
 
 - **Human URL:** [https://docs.readme.com/main/docs/readmes-mcp-server](https://docs.readme.com/main/docs/readmes-mcp-server)
 
-**Tags:** MCP, AI, Model Context Protocol, Agents
+#### Tags
 
-**Properties**
+- MCP
+- AI
+- Model Context Protocol
+- Agents
 
-- [Documentation — ReadMe's MCP Server](https://docs.readme.com/main/docs/readmes-mcp-server)
-- [Use Cases — ReadMe's MCP Server](https://docs.readme.com/main/docs/readmes-mcp-use-cases)
-- [Documentation — Your Project's MCP Server](https://docs.readme.com/main/docs/your-projects-mcp-server)
-- [Use Cases — Your Project's MCP Server](https://docs.readme.com/main/docs/your-projects-mcp-use-cases)
-- [What is MCP?](https://docs.readme.com/main/docs/mcp-servers)
-- [Capability — MCP Bridge](capabilities/readme-mcp.yaml)
+#### Properties
+
+- [Documentation](https://docs.readme.com/main/docs/readmes-mcp-server)
+- [Use Cases](https://docs.readme.com/main/docs/readmes-mcp-use-cases)
+- [Documentation](https://docs.readme.com/main/docs/your-projects-mcp-server)
+- [Use Cases](https://docs.readme.com/main/docs/your-projects-mcp-use-cases)
+- [Explainer](https://docs.readme.com/main/docs/mcp-servers)
+- [Postman Collection](collections/readme-developer-metrics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/readme-developer-metrics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/readme.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/readme.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### ReadMe Personalized Docs Webhook
+
+ReadMe's Personalized Docs Webhook is the outbound, customer-hosted webhook the developer hub calls at user sign-in to look up a reader's account data. ReadMe POSTs a JSON body containing the user's email, signs the request with a Stripe-style `ReadMe-Signature` header (`t=<unix-ms>,v0=<hmac-sha256-hex>`) using the project's webhook secret, and expects a JSON response describing the user (apiKey, keys array, server-variable parameters, Basic Auth, GraphQL bearer, etc.) which the hub then merges into the rendered API Reference, Try-It console, and Recipes. The single documented event is the user-data lookup.
+
+- **Human URL:** [https://docs.readme.com/main/docs/personalized-docs-webhook](https://docs.readme.com/main/docs/personalized-docs-webhook)
+
+#### Tags
+
+- Webhooks
+- Personalized Docs
+- Developer Hub
+- Authentication
+
+#### Properties
+
+- [Documentation](https://docs.readme.com/main/docs/personalized-docs-webhook)
+- [Explainer](https://docs.readme.com/main/docs/personalized-docs)
+- [Documentation](https://docs.readme.com/main/docs/user-data-options)
+- [SDK](https://github.com/readmeio/metrics-sdks)
+- [AsyncAPI](https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/asyncapi/readme-personalized-docs-webhook-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+- [Postman Collection](collections/readme-developer-metrics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/readme-developer-metrics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/readme.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/readme.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
 - [Portal](https://readme.com)
 - [Getting Started](https://docs.readme.com/main/docs/quickstart)
 - [Documentation](https://docs.readme.com)
@@ -101,55 +142,22 @@ ReadMe operates a hosted Model Context Protocol (MCP) server that lets AI tools 
 - [Status Page](https://www.readmestatus.com)
 - [Terms of Service](https://readme.com/tos)
 - [Privacy Policy](https://readme.com/privacy)
-- [GitHub Org](https://github.com/readmeio)
+- [Git Hub Org](https://github.com/readmeio)
 - [LinkedIn](https://www.linkedin.com/company/readme)
-- [LLMs.txt](https://docs.readme.com/llms.txt)
-- [CLI — rdme](https://github.com/readmeio/rdme)
-- [Metrics SDKs](https://github.com/readmeio/metrics-sdks)
-- [OAS Tooling](https://github.com/readmeio/oas)
-- [Auto SDK Generation (api)](https://github.com/readmeio/api)
-- [Markdown Parser](https://github.com/readmeio/markdown)
-- [MDX Marketplace](https://github.com/readmeio/marketplace)
-
-## Pricing
-
-Sourced from [readme.com/pricing](https://readme.com/pricing).
-
-| Plan | Price | Notes |
-|---|---|---|
-| Starter | $0 / mo | Free; custom domain, bi-directional sync, interactive API reference, usage metrics. |
-| Pro | $250 / mo | Billed annually. Branching, reviews, private docs, MDX components, reusable content. |
-| Enterprise | $3,000+ / mo | Annual billing; multi-project, SSO, audit logs, dedicated support. |
-| Ask AI add-on | $150 / mo | OpenAI-powered end-user assistant; available on all tiers. |
-
-See [`plans/readme-plans-pricing.yml`](plans/readme-plans-pricing.yml) for the machine-readable definition.
-
-## Rate Limits
-
-ReadMe does not publish numeric rate limits for the v2 API. Throttling is signaled via standard `X-RateLimit-*` headers, `429 Too Many Requests`, and `Retry-After`. The Metrics ingestion endpoint at `metrics.readme.io/v1/request` is designed for high-volume server-side logging and SDKs batch entries automatically.
-
-See [`rate-limits/readme-rate-limits.yml`](rate-limits/readme-rate-limits.yml) for full details.
-
-## FinOps
-
-FOCUS-aligned cost-allocation framework at [`finops/readme-finops.yml`](finops/readme-finops.yml). The ReadMe APIs are unlocked by the hub subscription; there is no per-call consumption price.
-
-## Artifacts
-
-| Type | Path |
-|---|---|
-| APIs index | [`apis.yml`](apis.yml) |
-| OpenAPI | [`openapi/readme-openapi.yml`](openapi/readme-openapi.yml), [`openapi/readme-developer-metrics-openapi.yml`](openapi/readme-developer-metrics-openapi.yml) |
-| Capabilities | 10 files in [`capabilities/`](capabilities/) — APIs, Guides, Changelog, Custom Pages, Categories, Branches, Images, Search, API Keys, Metrics, Analytics, and the MCP bridge |
-| JSON Schema | 5 schemas in [`json-schema/`](json-schema/) — APIDefinition, Guide, Changelog, Branch, MetricsRequest |
-| JSON Structure | [`json-structure/readme-developer-hub-structure.json`](json-structure/readme-developer-hub-structure.json) |
-| JSON-LD | [`json-ld/readme-context.jsonld`](json-ld/readme-context.jsonld) |
-| Examples | 5 request/response examples in [`examples/`](examples/) |
-| Spectral rules | [`rules/readme-rules.yml`](rules/readme-rules.yml) |
-| Vocabulary | [`vocabulary/readme-vocabulary.yml`](vocabulary/readme-vocabulary.yml) |
-| Plans | [`plans/readme-plans-pricing.yml`](plans/readme-plans-pricing.yml) |
-| Rate limits | [`rate-limits/readme-rate-limits.yml`](rate-limits/readme-rate-limits.yml) |
-| FinOps | [`finops/readme-finops.yml`](finops/readme-finops.yml) |
+- [L L Ms Txt](https://docs.readme.com/llms.txt)
+- [C L I](https://github.com/readmeio/rdme)
+- [SDK](https://github.com/readmeio/metrics-sdks)
+- [Tools](https://github.com/readmeio/oas)
+- [Tools](https://github.com/readmeio/api)
+- [Tools](https://github.com/readmeio/markdown)
+- [Git Hub Action](https://github.com/readmeio/rdme)
+- [Marketplace](https://github.com/readmeio/marketplace)
+- [Plans](plans/readme-plans-pricing.yml)
+- [Rate Limits](rate-limits/readme-rate-limits.yml)
+- [Fin Ops](finops/readme-finops.yml)
+- [Vocabulary](vocabulary/readme-vocabulary.yml)
+- [J S O N L D Context](json-ld/readme-context.jsonld)
+- [Spectral Rules](rules/readme-rules.yml)
 
 ## Maintainers
 
