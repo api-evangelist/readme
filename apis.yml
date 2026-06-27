@@ -67,7 +67,7 @@ apis:
   - type: OpenAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-developer-metrics-openapi.yml
-  - type: SDK
+  - type: SDKs
     url: https://github.com/readmeio/metrics-sdks
 - aid: readme:mcp-server
   name: ReadMe MCP Server
@@ -115,7 +115,7 @@ apis:
     url: https://docs.readme.com/main/docs/personalized-docs
   - type: Documentation
     url: https://docs.readme.com/main/docs/user-data-options
-  - type: SDK
+  - type: SDKs
     url: https://github.com/readmeio/metrics-sdks
   - type: AsyncAPI
     url: >-
@@ -123,45 +123,42 @@ apis:
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/readme/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/readme-create-branch-with-guide-workflow.yml
-    name: ReadMe Stand Up A New Version With Starter Docs
-    summary: Create a branch (version), add a category, and seed it with a first guide.
-  - url: arazzo/readme-create-category-with-guide-workflow.yml
-    name: ReadMe Create A Category With A Guide
-    summary: Create a sidebar category and immediately add a guide page to it.
-  - url: arazzo/readme-publish-changelog-post-workflow.yml
-    name: ReadMe Publish A Changelog Post
-    summary: Create a changelog post on a branch and read it back by slug.
-  - url: arazzo/readme-publish-custom-page-workflow.yml
-    name: ReadMe Publish A Custom Page
-    summary: Create a custom page on a branch and read it back by slug.
-  - url: arazzo/readme-publish-recipe-workflow.yml
-    name: ReadMe Publish A Recipe
-    summary: Create an interactive recipe and read it back by slug.
-  - url: arazzo/readme-release-version-workflow.yml
-    name: ReadMe Cut A Version And Announce It
-    summary: Create a branch, upload its API definition, and post a launch changelog.
-  - url: arazzo/readme-submit-metrics-and-audit-workflow.yml
-    name: ReadMe Submit Metrics And Audit Quality
-    summary: Send API request logs to Metrics, then retrieve page quality scores.
-  - url: arazzo/readme-upload-api-definition-workflow.yml
-    name: ReadMe Upload An API Definition And Verify
-    summary: Upload an OpenAPI definition to a branch and read the created definition back.
-  - url: arazzo/readme-upsert-category-workflow.yml
-    name: ReadMe Upsert A Category
-    summary: Find a category by slug and update it if it exists, otherwise create it.
-  - url: arazzo/readme-upsert-changelog-post-workflow.yml
-    name: ReadMe Upsert A Changelog Post
-    summary: Find a changelog post by slug and update it if it exists, otherwise create it.
-  - url: arazzo/readme-upsert-custom-page-workflow.yml
-    name: ReadMe Upsert A Custom Page
-    summary: Find a custom page by slug and update it if it exists, otherwise create it.
-  - url: arazzo/readme-upsert-guide-workflow.yml
-    name: ReadMe Upsert A Guide Page
-    summary: Find a guide by slug and update it if it exists, otherwise create it.
+- type: Arazzo
+  url: arazzo/readme-create-branch-with-guide-workflow.yml
+  name: ReadMe Stand Up A New Version With Starter Docs
+- type: Arazzo
+  url: arazzo/readme-create-category-with-guide-workflow.yml
+  name: ReadMe Create A Category With A Guide
+- type: Arazzo
+  url: arazzo/readme-publish-changelog-post-workflow.yml
+  name: ReadMe Publish A Changelog Post
+- type: Arazzo
+  url: arazzo/readme-publish-custom-page-workflow.yml
+  name: ReadMe Publish A Custom Page
+- type: Arazzo
+  url: arazzo/readme-publish-recipe-workflow.yml
+  name: ReadMe Publish A Recipe
+- type: Arazzo
+  url: arazzo/readme-release-version-workflow.yml
+  name: ReadMe Cut A Version And Announce It
+- type: Arazzo
+  url: arazzo/readme-submit-metrics-and-audit-workflow.yml
+  name: ReadMe Submit Metrics And Audit Quality
+- type: Arazzo
+  url: arazzo/readme-upload-api-definition-workflow.yml
+  name: ReadMe Upload An API Definition And Verify
+- type: Arazzo
+  url: arazzo/readme-upsert-category-workflow.yml
+  name: ReadMe Upsert A Category
+- type: Arazzo
+  url: arazzo/readme-upsert-changelog-post-workflow.yml
+  name: ReadMe Upsert A Changelog Post
+- type: Arazzo
+  url: arazzo/readme-upsert-custom-page-workflow.yml
+  name: ReadMe Upsert A Custom Page
+- type: Arazzo
+  url: arazzo/readme-upsert-guide-workflow.yml
+  name: ReadMe Upsert A Guide Page
 - type: Portal
   url: https://readme.com
 - type: GettingStarted
@@ -172,7 +169,7 @@ common:
   url: https://docs.readme.com/main/reference/intro-to-the-readme-api
 - type: Pricing
   url: https://readme.com/pricing
-- type: SignUp
+- type: Signup
   url: https://dash.readme.com/signup
 - type: Login
   url: https://dash.readme.com/login
@@ -192,11 +189,11 @@ common:
   url: https://github.com/readmeio
 - type: LinkedIn
   url: https://www.linkedin.com/company/readme
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.readme.com/llms.txt
 - type: CLI
   url: https://github.com/readmeio/rdme
-- type: SDK
+- type: SDKs
   url: https://github.com/readmeio/metrics-sdks
 - type: Tools
   url: https://github.com/readmeio/oas
