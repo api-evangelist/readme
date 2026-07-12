@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/readme-developer-metrics-openapi.yml, openapi/readme-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic auth using your ReadMe API key as the username (password blank).
+  sources:
+  - openapi/readme-developer-metrics-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Use your ReadMe API key as a Bearer token in the Authorization header.
+  sources:
+  - openapi/readme-openapi.yml

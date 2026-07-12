@@ -121,6 +121,10 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/asyncapi/readme-personalized-docs-webhook-asyncapi.yml
 common:
+- type: DomainSecurity
+  url: security/readme-domain-security.yml
+- type: Authentication
+  url: authentication/readme-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/readme/overview
 - type: Arazzo
