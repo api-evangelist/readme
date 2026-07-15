@@ -121,6 +121,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/asyncapi/readme-personalized-docs-webhook-asyncapi.yml
 common:
+- type: AgenticAccess
+  url: agentic-access/readme-agentic-access.yml
 - type: DomainSecurity
   url: security/readme-domain-security.yml
 - type: Authentication
