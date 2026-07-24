@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  title: ReadMe Developer Metrics Analytics API Keys API
+  description: The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real time.
+  version: '1.0'
+  contact:
+    name: ReadMe Support
+    url: https://docs.readme.com
+servers:
+- url: https://metrics.readme.io/v1
+  description: ReadMe Metrics API
+security:
+- basicAuth: []
+tags:
+- name: API Keys
+  description: Manage ReadMe API keys
+paths:
+  /apikeys:
+    get:
+      tags:
+      - API Keys
+      summary: List API Keys
+      responses:
+        '200':
+          description: API keys
+    post:
+      tags:
+      - API Keys
+      summary: Create An API Key
+      responses:
+        '201':
+          description: Created
+  /apikeys/{id}:
+    delete:
+      tags:
+      - API Keys
+      summary: Delete An API Key
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth using your ReadMe API key as the username (password blank).

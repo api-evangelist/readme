@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: ReadMe Developer Metrics Analytics APIs API
+  description: The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real time.
+  version: '1.0'
+  contact:
+    name: ReadMe Support
+    url: https://docs.readme.com
+servers:
+- url: https://metrics.readme.io/v1
+  description: ReadMe Metrics API
+security:
+- basicAuth: []
+tags:
+- name: APIs
+  description: Manage API definitions and reference pages
+paths:
+  /branches/{branch}/apis:
+    get:
+      tags:
+      - APIs
+      summary: List API Definitions
+      description: Retrieve metadata for API definitions on a branch.
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval
+        '401':
+          description: Unauthorized
+        '404':
+          description: Branch not found
+    post:
+      tags:
+      - APIs
+      summary: Upload An API Definition
+      responses:
+        '201':
+          description: Created
+  /branches/{branch}/apis/{id}:
+    get:
+      tags:
+      - APIs
+      summary: Get An API Definition
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: API definition
+    put:
+      tags:
+      - APIs
+      summary: Update An API Definition
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+    delete:
+      tags:
+      - APIs
+      summary: Delete An API Definition
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth using your ReadMe API key as the username (password blank).

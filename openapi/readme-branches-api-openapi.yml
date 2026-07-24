@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: ReadMe Developer Metrics Analytics Branches API
+  description: The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real time.
+  version: '1.0'
+  contact:
+    name: ReadMe Support
+    url: https://docs.readme.com
+servers:
+- url: https://metrics.readme.io/v1
+  description: ReadMe Metrics API
+security:
+- basicAuth: []
+tags:
+- name: Branches
+  description: Manage versions and branches
+paths:
+  /branches:
+    get:
+      tags:
+      - Branches
+      summary: List Branches
+      responses:
+        '200':
+          description: Branches list
+    post:
+      tags:
+      - Branches
+      summary: Create A Branch
+      responses:
+        '201':
+          description: Created
+  /branches/{branch}:
+    get:
+      tags:
+      - Branches
+      summary: Get A Branch
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Branch
+    put:
+      tags:
+      - Branches
+      summary: Update A Branch
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+    delete:
+      tags:
+      - Branches
+      summary: Delete A Branch
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth using your ReadMe API key as the username (password blank).

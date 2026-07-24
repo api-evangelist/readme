@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: ReadMe Developer Metrics Analytics Categories API
+  description: The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real time.
+  version: '1.0'
+  contact:
+    name: ReadMe Support
+    url: https://docs.readme.com
+servers:
+- url: https://metrics.readme.io/v1
+  description: ReadMe Metrics API
+security:
+- basicAuth: []
+tags:
+- name: Categories
+  description: Manage sidebar groupings
+paths:
+  /branches/{branch}/categories:
+    get:
+      tags:
+      - Categories
+      summary: List Categories
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Categories
+    post:
+      tags:
+      - Categories
+      summary: Create A Category
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Created
+  /branches/{branch}/categories/{slug}:
+    get:
+      tags:
+      - Categories
+      summary: Get A Category
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Category
+    put:
+      tags:
+      - Categories
+      summary: Update A Category
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+    delete:
+      tags:
+      - Categories
+      summary: Delete A Category
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth using your ReadMe API key as the username (password blank).

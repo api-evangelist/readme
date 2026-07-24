@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: ReadMe Developer Metrics Analytics Changelog API
+  description: The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real time.
+  version: '1.0'
+  contact:
+    name: ReadMe Support
+    url: https://docs.readme.com
+servers:
+- url: https://metrics.readme.io/v1
+  description: ReadMe Metrics API
+security:
+- basicAuth: []
+tags:
+- name: Changelog
+  description: Manage changelog posts
+paths:
+  /branches/{branch}/changelogs:
+    get:
+      tags:
+      - Changelog
+      summary: List Changelog Posts
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Changelog posts
+    post:
+      tags:
+      - Changelog
+      summary: Create A Changelog Post
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Created
+  /branches/{branch}/changelogs/{slug}:
+    get:
+      tags:
+      - Changelog
+      summary: Get A Changelog Post
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Changelog post
+    put:
+      tags:
+      - Changelog
+      summary: Update A Changelog Post
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+    delete:
+      tags:
+      - Changelog
+      summary: Delete A Changelog Post
+      parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth using your ReadMe API key as the username (password blank).

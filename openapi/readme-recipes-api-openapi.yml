@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: ReadMe Developer Metrics Analytics Recipes API
+  description: The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real time.
+  version: '1.0'
+  contact:
+    name: ReadMe Support
+    url: https://docs.readme.com
+servers:
+- url: https://metrics.readme.io/v1
+  description: ReadMe Metrics API
+security:
+- basicAuth: []
+tags:
+- name: Recipes
+  description: Manage interactive recipe content
+paths:
+  /recipes:
+    get:
+      tags:
+      - Recipes
+      summary: List Recipes
+      responses:
+        '200':
+          description: Recipes
+    post:
+      tags:
+      - Recipes
+      summary: Create A Recipe
+      responses:
+        '201':
+          description: Created
+  /recipes/{slug}:
+    get:
+      tags:
+      - Recipes
+      summary: Get A Recipe
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Recipe
+    put:
+      tags:
+      - Recipes
+      summary: Update A Recipe
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+    delete:
+      tags:
+      - Recipes
+      summary: Delete A Recipe
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth using your ReadMe API key as the username (password blank).
