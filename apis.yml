@@ -8,7 +8,20 @@ description: >-
   — including the ReadMe Agent for multi-page editing, Inline AI rewrites, the AI Linter for style-guide enforcement,
   Docs Audit, GitHub AI Writer for PR-triggered doc updates, Ask AI for end users, and Model Context Protocol (MCP)
   servers for both ReadMe itself and each customer project so AI tools can search, read, update docs, and call APIs.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/readme.png
 type: Index
 access: 3rd-Party
 position: Consumer
@@ -26,56 +39,13 @@ tags:
 segments:
 - Documentation
 apis:
-- aid: readme:readme-api
-  name: ReadMe API
-  description: >-
-    The ReadMe API (v2) lets you programmatically control your ReadMe developer hub. It manages API definitions, API
-    reference pages, guides, changelog, custom pages, categories, branches (versions), images, recipes, and search.
-    Authentication uses a Bearer API key.
-  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
-  baseURL: https://api.readme.com/v2
-  tags:
-  - Documentation
-  - Developer Hub
-  - Content Management
-  - API Reference
-  properties:
-  - type: Documentation
-    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
-  - type: Authentication
-    url: https://docs.readme.com/main/reference/authentication
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-openapi.yml
-  - url: graphql/readme-graphql.md
-    type: GraphQL
-- aid: readme:developer-metrics-api
-  name: ReadMe Developer Metrics API
-  description: >-
-    The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs
-    (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and
-    search analytics so teams can investigate API usage by key or email and debug requests in real time.
-  humanURL: https://docs.readme.com/main/docs/sending-api-logs
-  baseURL: https://metrics.readme.io/v1
-  tags:
-  - Analytics
-  - Metrics
-  - Logging
-  - Developer Dashboard
-  properties:
-  - type: Documentation
-    url: https://docs.readme.com/main/docs/sending-api-logs
-  - type: OpenAPI
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/openapi/readme-developer-metrics-openapi.yml
-  - type: SDKs
-    url: https://github.com/readmeio/metrics-sdks
 - aid: readme:mcp-server
   name: ReadMe MCP Server
   description: >-
-    ReadMe operates a hosted Model Context Protocol (MCP) server that lets AI tools (Claude, Cursor, IDEs, CI
-    pipelines) search, read, and update ReadMe documentation through natural language. ReadMe also auto-provisions a
-    per-project MCP server for every customer so end users' AI tools can read, search, and call that project's API
-    directly.
+    ReadMe operates a hosted Model Context Protocol (MCP) server that lets AI tools (Claude, Cursor, IDEs,
+    CI pipelines) search, read, and update ReadMe documentation through natural language. ReadMe also
+    auto-provisions a per-project MCP server for every customer so end users' AI tools can read, search,
+    and call that project's API directly.
   humanURL: https://docs.readme.com/main/docs/readmes-mcp-server
   tags:
   - MCP
@@ -96,12 +66,13 @@ apis:
 - aid: readme:personalized-docs-webhook
   name: ReadMe Personalized Docs Webhook
   description: >-
-    ReadMe's Personalized Docs Webhook is the outbound, customer-hosted webhook the developer hub calls at user
-    sign-in to look up a reader's account data. ReadMe POSTs a JSON body containing the user's email, signs the
-    request with a Stripe-style `ReadMe-Signature` header (`t=<unix-ms>,v0=<hmac-sha256-hex>`) using the project's
-    webhook secret, and expects a JSON response describing the user (apiKey, keys array, server-variable parameters,
-    Basic Auth, GraphQL bearer, etc.) which the hub then merges into the rendered API Reference, Try-It console, and
-    Recipes. The single documented event is the user-data lookup.
+    ReadMe's Personalized Docs Webhook is the outbound, customer-hosted webhook the developer hub calls
+    at user sign-in to look up a reader's account data. ReadMe POSTs a JSON body containing the user's
+    email, signs the request with a Stripe-style `ReadMe-Signature` header (`t=<unix-ms>,v0=<hmac-sha256-hex>`)
+    using the project's webhook secret, and expects a JSON response describing the user (apiKey, keys
+    array, server-variable parameters, Basic Auth, GraphQL bearer, etc.) which the hub then merges into
+    the rendered API Reference, Try-It console, and Recipes. The single documented event is the user-data
+    lookup.
   humanURL: https://docs.readme.com/main/docs/personalized-docs-webhook
   tags:
   - Webhooks
@@ -120,6 +91,246 @@ apis:
   - type: AsyncAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/readme/refs/heads/main/asyncapi/readme-personalized-docs-webhook-asyncapi.yml
+- aid: readme:readme-analytics-api
+  name: ReadMe Analytics API
+  description: Page view, quality, and search analytics
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-api-keys-api
+  name: ReadMe API Keys API
+  description: Manage ReadMe API keys
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-apis-api
+  name: ReadMe APIs API
+  description: Manage API definitions and reference pages
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - APIs
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-apis-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-branches-api
+  name: ReadMe Branches API
+  description: Manage versions and branches
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Branches
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-branches-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-categories-api
+  name: ReadMe Categories API
+  description: Manage sidebar groupings
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-categories-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-changelog-api
+  name: ReadMe Changelog API
+  description: Manage changelog posts
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Changelog
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-changelog-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-custom-pages-api
+  name: ReadMe Custom Pages API
+  description: Manage custom documentation pages
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Custom Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-custom-pages-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-guides-api
+  name: ReadMe Guides API
+  description: Manage knowledge base guide pages
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Guides
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-guides-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-images-api
+  name: ReadMe Images API
+  description: Upload and manage images
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-images-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-metrics-api
+  name: ReadMe Metrics API
+  description: Send API request metrics from server-side SDKs
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-recipes-api
+  name: ReadMe Recipes API
+  description: Manage interactive recipe content
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Recipes
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-recipes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-search-api
+  name: ReadMe Search API
+  description: Search knowledge base content
+  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  baseURL: https://api.readme.com/v2
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
 common:
 - type: AgenticAccess
   url: agentic-access/readme-agentic-access.yml
