@@ -1,0 +1,36 @@
+{
+  "provider": "readme",
+  "sources": [
+    "readme-analytics-api-openapi.yml",
+    "readme-api-keys-api-openapi.yml",
+    "readme-apis-api-openapi.yml",
+    "readme-branches-api-openapi.yml",
+    "readme-categories-api-openapi.yml",
+    "readme-changelog-api-openapi.yml",
+    "readme-custom-pages-api-openapi.yml",
+    "readme-guides-api-openapi.yml",
+    "readme-images-api-openapi.yml",
+    "readme-metrics-api-openapi.yml",
+    "readme-recipes-api-openapi.yml",
+    "readme-search-api-openapi.yml"
+  ],
+  "outputs": [
+    "readme-analytics-api-openapi.yml",
+    "readme-api-keys-api-openapi.yml",
+    "readme-apis-api-openapi.yml",
+    "readme-branches-api-openapi.yml",
+    "readme-categories-api-openapi.yml",
+    "readme-changelog-api-openapi.yml",
+    "readme-custom-pages-api-openapi.yml",
+    "readme-guides-api-openapi.yml",
+    "readme-images-api-openapi.yml",
+    "readme-metrics-api-openapi.yml",
+    "readme-recipes-api-openapi.yml",
+    "readme-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
