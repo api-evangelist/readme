@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ReadMe Developer Metrics Analytics Guides API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Guides",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Guide Pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/branches/:branch/guides",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Guide Pages"
+        },
+        {
+          "info": {
+            "name": "Create A Guide Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metrics.readme.io/v1/branches/:branch/guides",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create A Guide Page"
+        },
+        {
+          "info": {
+            "name": "Get A Guide By Slug",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/branches/:branch/guides/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Guide By Slug"
+        },
+        {
+          "info": {
+            "name": "Update A Guide",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://metrics.readme.io/v1/branches/:branch/guides/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Guide"
+        },
+        {
+          "info": {
+            "name": "Delete A Guide",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://metrics.readme.io/v1/branches/:branch/guides/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Guide"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

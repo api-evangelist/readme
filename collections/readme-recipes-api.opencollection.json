@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ReadMe Developer Metrics Analytics Recipes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recipes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/recipes"
+          },
+          "docs": "List Recipes"
+        },
+        {
+          "info": {
+            "name": "Create A Recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metrics.readme.io/v1/recipes"
+          },
+          "docs": "Create A Recipe"
+        },
+        {
+          "info": {
+            "name": "Get A Recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/recipes/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Recipe"
+        },
+        {
+          "info": {
+            "name": "Update A Recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://metrics.readme.io/v1/recipes/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Recipe"
+        },
+        {
+          "info": {
+            "name": "Delete A Recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://metrics.readme.io/v1/recipes/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Recipe"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

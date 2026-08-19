@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ReadMe Developer Metrics Analytics Categories API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/branches/:branch/categories",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Categories"
+        },
+        {
+          "info": {
+            "name": "Create A Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metrics.readme.io/v1/branches/:branch/categories",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create A Category"
+        },
+        {
+          "info": {
+            "name": "Get A Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/branches/:branch/categories/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Category"
+        },
+        {
+          "info": {
+            "name": "Update A Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://metrics.readme.io/v1/branches/:branch/categories/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Category"
+        },
+        {
+          "info": {
+            "name": "Delete A Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://metrics.readme.io/v1/branches/:branch/categories/:slug",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Category"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

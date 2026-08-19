@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ReadMe Developer Metrics Analytics APIs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/branches/:branch/apis",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve metadata for API definitions on a branch."
+        },
+        {
+          "info": {
+            "name": "Upload An API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metrics.readme.io/v1/branches/:branch/apis"
+          },
+          "docs": "Upload An API Definition"
+        },
+        {
+          "info": {
+            "name": "Get An API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/branches/:branch/apis/:id",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get An API Definition"
+        },
+        {
+          "info": {
+            "name": "Update An API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://metrics.readme.io/v1/branches/:branch/apis/:id",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update An API Definition"
+        },
+        {
+          "info": {
+            "name": "Delete An API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://metrics.readme.io/v1/branches/:branch/apis/:id",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete An API Definition"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

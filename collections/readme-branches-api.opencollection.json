@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ReadMe Developer Metrics Analytics Branches API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Branches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/branches"
+          },
+          "docs": "List Branches"
+        },
+        {
+          "info": {
+            "name": "Create A Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metrics.readme.io/v1/branches"
+          },
+          "docs": "Create A Branch"
+        },
+        {
+          "info": {
+            "name": "Get A Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metrics.readme.io/v1/branches/:branch",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Branch"
+        },
+        {
+          "info": {
+            "name": "Update A Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://metrics.readme.io/v1/branches/:branch",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update A Branch"
+        },
+        {
+          "info": {
+            "name": "Delete A Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://metrics.readme.io/v1/branches/:branch",
+            "params": [
+              {
+                "name": "branch",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Branch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
