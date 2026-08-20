@@ -31,6 +31,15 @@ tags:
 - Documentation
 - Developer Hub
 - API Reference
+- Portal
+- Analytics
+- Artificial Intelligence
+- MCP
+- Bi-Directional Sync
+tags_raw:
+- Documentation
+- Developer Hub
+- API Reference
 - Portals
 - Analytics
 - AI
@@ -48,6 +57,10 @@ apis:
     and call that project's API directly.
   humanURL: https://docs.readme.com/main/docs/readmes-mcp-server
   tags:
+  - MCP
+  - Artificial Intelligence
+  - Agents
+  tags_raw:
   - MCP
   - AI
   - Model Context Protocol
@@ -75,6 +88,11 @@ apis:
     lookup.
   humanURL: https://docs.readme.com/main/docs/personalized-docs-webhook
   tags:
+  - Webhook
+  - Personalized Docs
+  - Developer Hub
+  - Authentication
+  tags_raw:
   - Webhooks
   - Personalized Docs
   - Developer Hub
@@ -117,6 +135,8 @@ apis:
   humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
   baseURL: https://api.readme.com/v2
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -136,7 +156,8 @@ apis:
   description: Manage API definitions and reference pages
   humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
   baseURL: https://api.readme.com/v2
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
@@ -257,6 +278,8 @@ apis:
   humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
   baseURL: https://api.readme.com/v2
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
