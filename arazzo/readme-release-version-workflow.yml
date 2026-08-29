@@ -11,8 +11,14 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: apisApi
+  url: ../openapi/readme-apis-api-openapi.yml
+  type: openapi
+- name: branchesApi
+  url: ../openapi/readme-branches-api-openapi.yml
+  type: openapi
+- name: changelogApi
+  url: ../openapi/readme-changelog-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: release-version
@@ -46,7 +52,7 @@ workflows:
   steps:
   - stepId: createBranch
     description: Create the new branch (version) for the release.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches/post'
+    operationPath: '{$sourceDescriptions.branchesApi.url}#/paths/~1branches/post'
     parameters:
     - name: Authorization
       in: header
@@ -62,7 +68,7 @@ workflows:
       branchName: $response.body#/name
   - stepId: uploadDefinition
     description: Upload the API definition that powers the reference docs on the new branch.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1apis/post'
+    operationPath: '{$sourceDescriptions.apisApi.url}#/paths/~1branches~1{branch}~1apis/post'
     parameters:
     - name: branch
       in: path
@@ -80,7 +86,7 @@ workflows:
       apiId: $response.body#/id
   - stepId: announceRelease
     description: Post an "added" changelog entry announcing the new version.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs/post'
+    operationPath: '{$sourceDescriptions.changelogApi.url}#/paths/~1branches~1{branch}~1changelogs/post'
     parameters:
     - name: branch
       in: path

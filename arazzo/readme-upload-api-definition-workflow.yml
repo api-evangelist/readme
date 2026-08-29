@@ -10,8 +10,8 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: apisApi
+  url: ../openapi/readme-apis-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: upload-api-definition
@@ -37,7 +37,7 @@ workflows:
   steps:
   - stepId: uploadDefinition
     description: Upload the API definition to the target branch.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1apis/post'
+    operationPath: '{$sourceDescriptions.apisApi.url}#/paths/~1branches~1{branch}~1apis/post'
     parameters:
     - name: branch
       in: path
@@ -55,7 +55,7 @@ workflows:
       apiId: $response.body#/id
   - stepId: getDefinition
     description: Read the created API definition back by id to confirm ingestion.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1apis~1{id}/get'
+    operationPath: '{$sourceDescriptions.apisApi.url}#/paths/~1branches~1{branch}~1apis~1{id}/get'
     parameters:
     - name: branch
       in: path

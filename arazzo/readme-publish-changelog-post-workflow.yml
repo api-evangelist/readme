@@ -11,8 +11,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: changelogApi
+  url: ../openapi/readme-changelog-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: publish-changelog-post
@@ -46,7 +46,7 @@ workflows:
   steps:
   - stepId: createChangelog
     description: Create a typed changelog post on the target branch.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs/post'
+    operationPath: '{$sourceDescriptions.changelogApi.url}#/paths/~1branches~1{branch}~1changelogs/post'
     parameters:
     - name: branch
       in: path
@@ -66,7 +66,7 @@ workflows:
       slug: $response.body#/slug
   - stepId: getChangelog
     description: Read the created changelog post back by slug to confirm publication.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs~1{slug}/get'
+    operationPath: '{$sourceDescriptions.changelogApi.url}#/paths/~1branches~1{branch}~1changelogs~1{slug}/get'
     parameters:
     - name: branch
       in: path

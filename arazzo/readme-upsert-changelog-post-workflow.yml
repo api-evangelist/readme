@@ -10,8 +10,8 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: changelogApi
+  url: ../openapi/readme-changelog-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: upsert-changelog-post
@@ -49,7 +49,7 @@ workflows:
   steps:
   - stepId: listChangelogs
     description: List changelog posts on the branch to detect whether the target slug exists.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs/get'
+    operationPath: '{$sourceDescriptions.changelogApi.url}#/paths/~1branches~1{branch}~1changelogs/get'
     parameters:
     - name: branch
       in: path
@@ -78,7 +78,7 @@ workflows:
         type: jsonpath
   - stepId: updateChangelog
     description: Update the existing changelog post identified by slug.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs~1{slug}/put'
+    operationPath: '{$sourceDescriptions.changelogApi.url}#/paths/~1branches~1{branch}~1changelogs~1{slug}/put'
     parameters:
     - name: branch
       in: path
@@ -104,7 +104,7 @@ workflows:
       type: end
   - stepId: createChangelog
     description: Create a new changelog post when no post with the target slug exists.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1changelogs/post'
+    operationPath: '{$sourceDescriptions.changelogApi.url}#/paths/~1branches~1{branch}~1changelogs/post'
     parameters:
     - name: branch
       in: path

@@ -11,8 +11,8 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: guidesApi
+  url: ../openapi/readme-guides-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: upsert-guide
@@ -46,7 +46,7 @@ workflows:
   steps:
   - stepId: listGuides
     description: List guides on the branch to detect whether the target slug exists.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides/get'
+    operationPath: '{$sourceDescriptions.guidesApi.url}#/paths/~1branches~1{branch}~1guides/get'
     parameters:
     - name: branch
       in: path
@@ -75,7 +75,7 @@ workflows:
         type: jsonpath
   - stepId: updateGuide
     description: Update the existing guide identified by slug with the new content.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides~1{slug}/put'
+    operationPath: '{$sourceDescriptions.guidesApi.url}#/paths/~1branches~1{branch}~1guides~1{slug}/put'
     parameters:
     - name: branch
       in: path
@@ -101,7 +101,7 @@ workflows:
       type: end
   - stepId: createGuide
     description: Create a new guide when no guide with the target slug exists.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides/post'
+    operationPath: '{$sourceDescriptions.guidesApi.url}#/paths/~1branches~1{branch}~1guides/post'
     parameters:
     - name: branch
       in: path

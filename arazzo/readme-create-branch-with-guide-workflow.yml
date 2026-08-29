@@ -11,8 +11,14 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: branchesApi
+  url: ../openapi/readme-branches-api-openapi.yml
+  type: openapi
+- name: categoriesApi
+  url: ../openapi/readme-categories-api-openapi.yml
+  type: openapi
+- name: guidesApi
+  url: ../openapi/readme-guides-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-branch-with-guide
@@ -46,7 +52,7 @@ workflows:
   steps:
   - stepId: createBranch
     description: Create a new branch (version) to hold the starter documentation.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches/post'
+    operationPath: '{$sourceDescriptions.branchesApi.url}#/paths/~1branches/post'
     parameters:
     - name: Authorization
       in: header
@@ -63,7 +69,7 @@ workflows:
       branchName: $response.body#/name
   - stepId: createCategory
     description: Create a guide-type category on the newly created branch.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories/post'
+    operationPath: '{$sourceDescriptions.categoriesApi.url}#/paths/~1branches~1{branch}~1categories/post'
     parameters:
     - name: branch
       in: path
@@ -82,7 +88,7 @@ workflows:
       categorySlug: $response.body#/slug
   - stepId: createGuide
     description: Create a starter guide assigned to the new category.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides/post'
+    operationPath: '{$sourceDescriptions.guidesApi.url}#/paths/~1branches~1{branch}~1guides/post'
     parameters:
     - name: branch
       in: path

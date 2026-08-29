@@ -11,8 +11,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeMetricsApi
-  url: ../openapi/readme-developer-metrics-openapi.yml
+- name: analyticsApi
+  url: ../openapi/readme-analytics-api-openapi.yml
+  type: openapi
+- name: metricsApi
+  url: ../openapi/readme-metrics-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: submit-metrics-and-audit
@@ -36,7 +39,7 @@ workflows:
   steps:
   - stepId: submitLogs
     description: Submit HAR-formatted API request logs to the Metrics endpoint.
-    operationPath: '{$sourceDescriptions.readmeMetricsApi.url}#/paths/~1request/post'
+    operationPath: '{$sourceDescriptions.metricsApi.url}#/paths/~1request/post'
     parameters:
     - name: Authorization
       in: header
@@ -50,7 +53,7 @@ workflows:
       statusCode: $statusCode
   - stepId: getQualityScores
     description: Retrieve page quality scores from Docs Audit to act on findings.
-    operationPath: '{$sourceDescriptions.readmeMetricsApi.url}#/paths/~1quality/get'
+    operationPath: '{$sourceDescriptions.analyticsApi.url}#/paths/~1quality/get'
     parameters:
     - name: Authorization
       in: header

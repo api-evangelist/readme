@@ -11,8 +11,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: customPagesApi
+  url: ../openapi/readme-custom-pages-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: upsert-custom-page
@@ -46,7 +46,7 @@ workflows:
   steps:
   - stepId: listCustomPages
     description: List custom pages on the branch to detect whether the target slug exists.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages/get'
+    operationPath: '{$sourceDescriptions.customPagesApi.url}#/paths/~1branches~1{branch}~1custom_pages/get'
     parameters:
     - name: branch
       in: path
@@ -75,7 +75,7 @@ workflows:
         type: jsonpath
   - stepId: updateCustomPage
     description: Update the existing custom page identified by slug.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages~1{slug}/put'
+    operationPath: '{$sourceDescriptions.customPagesApi.url}#/paths/~1branches~1{branch}~1custom_pages~1{slug}/put'
     parameters:
     - name: branch
       in: path
@@ -100,7 +100,7 @@ workflows:
       type: end
   - stepId: createCustomPage
     description: Create a new custom page when no page with the target slug exists.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages/post'
+    operationPath: '{$sourceDescriptions.customPagesApi.url}#/paths/~1branches~1{branch}~1custom_pages/post'
     parameters:
     - name: branch
       in: path

@@ -11,8 +11,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: categoriesApi
+  url: ../openapi/readme-categories-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: upsert-category
@@ -45,7 +45,7 @@ workflows:
   steps:
   - stepId: listCategories
     description: List categories on the branch to detect whether the target slug exists.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories/get'
+    operationPath: '{$sourceDescriptions.categoriesApi.url}#/paths/~1branches~1{branch}~1categories/get'
     parameters:
     - name: branch
       in: path
@@ -74,7 +74,7 @@ workflows:
         type: jsonpath
   - stepId: updateCategory
     description: Update the existing category identified by slug.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories~1{slug}/put'
+    operationPath: '{$sourceDescriptions.categoriesApi.url}#/paths/~1branches~1{branch}~1categories~1{slug}/put'
     parameters:
     - name: branch
       in: path
@@ -99,7 +99,7 @@ workflows:
       type: end
   - stepId: createCategory
     description: Create a new category when no category with the target slug exists.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories/post'
+    operationPath: '{$sourceDescriptions.categoriesApi.url}#/paths/~1branches~1{branch}~1categories/post'
     parameters:
     - name: branch
       in: path

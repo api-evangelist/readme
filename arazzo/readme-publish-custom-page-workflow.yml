@@ -10,8 +10,8 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: customPagesApi
+  url: ../openapi/readme-custom-pages-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: publish-custom-page
@@ -44,7 +44,7 @@ workflows:
   steps:
   - stepId: createCustomPage
     description: Create a custom page on the target branch.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages/post'
+    operationPath: '{$sourceDescriptions.customPagesApi.url}#/paths/~1branches~1{branch}~1custom_pages/post'
     parameters:
     - name: branch
       in: path
@@ -64,7 +64,7 @@ workflows:
       slug: $response.body#/slug
   - stepId: getCustomPage
     description: Read the created custom page back by slug to confirm publication.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1custom_pages~1{slug}/get'
+    operationPath: '{$sourceDescriptions.customPagesApi.url}#/paths/~1branches~1{branch}~1custom_pages~1{slug}/get'
     parameters:
     - name: branch
       in: path

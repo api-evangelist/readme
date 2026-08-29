@@ -10,8 +10,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: recipesApi
+  url: ../openapi/readme-recipes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: publish-recipe
@@ -37,7 +37,7 @@ workflows:
   steps:
   - stepId: createRecipe
     description: Create an interactive recipe.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1recipes/post'
+    operationPath: '{$sourceDescriptions.recipesApi.url}#/paths/~1recipes/post'
     parameters:
     - name: Authorization
       in: header
@@ -53,7 +53,7 @@ workflows:
       slug: $inputs.slug
   - stepId: getRecipe
     description: Read the created recipe back by slug to confirm publication.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1recipes~1{slug}/get'
+    operationPath: '{$sourceDescriptions.recipesApi.url}#/paths/~1recipes~1{slug}/get'
     parameters:
     - name: slug
       in: path

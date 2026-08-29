@@ -11,8 +11,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: readmeApi
-  url: ../openapi/readme-openapi.yml
+- name: categoriesApi
+  url: ../openapi/readme-categories-api-openapi.yml
+  type: openapi
+- name: guidesApi
+  url: ../openapi/readme-guides-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-category-with-guide
@@ -48,7 +51,7 @@ workflows:
     description: >-
       Create a guide-type sidebar category on the target branch to group the
       new guide under.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1categories/post'
+    operationPath: '{$sourceDescriptions.categoriesApi.url}#/paths/~1branches~1{branch}~1categories/post'
     parameters:
     - name: branch
       in: path
@@ -69,7 +72,7 @@ workflows:
     description: >-
       Create a guide page on the same branch assigned to the category just
       created.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides/post'
+    operationPath: '{$sourceDescriptions.guidesApi.url}#/paths/~1branches~1{branch}~1guides/post'
     parameters:
     - name: branch
       in: path
@@ -90,7 +93,7 @@ workflows:
       guideSlug: $response.body#/slug
   - stepId: getGuide
     description: Read the created guide back by slug to confirm it was published.
-    operationPath: '{$sourceDescriptions.readmeApi.url}#/paths/~1branches~1{branch}~1guides~1{slug}/get'
+    operationPath: '{$sourceDescriptions.guidesApi.url}#/paths/~1branches~1{branch}~1guides~1{slug}/get'
     parameters:
     - name: branch
       in: path
