@@ -1,16 +1,21 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ReadMe Developer Metrics Analytics Categories API
-  description: The ReadMe Developer Metrics API powers the Developer Dashboard. It accepts API request logs from Metrics SDKs (Node.js, Python, Ruby, PHP, .NET) and exposes analytics including page quality scores, page view statistics, and search analytics so teams can investigate API usage by key or email and debug requests in real time.
-  version: '1.0'
+  title: ReadMe Categories API
+  description: The ReadMe API (v2) lets you programmatically control your ReadMe developer hub. It manages API definitions, API reference pages, guides, changelog, custom pages, categories, branches (versions), images, recipes, and search.
+  version: '2.0'
   contact:
     name: ReadMe Support
     url: https://docs.readme.com
+  license:
+    name: Proprietary
+    url: https://readme.com/tos
 servers:
-- url: https://metrics.readme.io/v1
-  description: ReadMe Metrics API
+- url: https://api.readme.com/v2
+  description: ReadMe API v2 base URL
+- url: https://dash.readme.io/api/v1
+  description: ReadMe API v1 (legacy)
 security:
-- basicAuth: []
+- bearerAuth: []
 tags:
 - name: Categories
   description: Manage sidebar groupings
@@ -99,7 +104,7 @@ paths:
           description: Deleted
 components:
   securitySchemes:
-    basicAuth:
+    bearerAuth:
       type: http
-      scheme: basic
-      description: HTTP Basic auth using your ReadMe API key as the username (password blank).
+      scheme: bearer
+      description: Use your ReadMe API key as a Bearer token in the Authorization header.

@@ -1,21 +1,12 @@
 {
   "provider": "readme",
   "sources": [
-    "readme-analytics-api-openapi.yml",
-    "readme-api-keys-api-openapi.yml",
-    "readme-apis-api-openapi.yml",
-    "readme-branches-api-openapi.yml",
-    "readme-categories-api-openapi.yml",
-    "readme-changelog-api-openapi.yml",
-    "readme-custom-pages-api-openapi.yml",
-    "readme-guides-api-openapi.yml",
-    "readme-images-api-openapi.yml",
-    "readme-metrics-api-openapi.yml",
-    "readme-recipes-api-openapi.yml",
-    "readme-search-api-openapi.yml"
+    "_original/readme-developer-metrics-openapi.yml",
+    "_original/readme-openapi.yml"
   ],
   "outputs": [
     "readme-analytics-api-openapi.yml",
+    "readme-metrics-api-openapi.yml",
     "readme-api-keys-api-openapi.yml",
     "readme-apis-api-openapi.yml",
     "readme-branches-api-openapi.yml",
@@ -24,13 +15,29 @@
     "readme-custom-pages-api-openapi.yml",
     "readme-guides-api-openapi.yml",
     "readme-images-api-openapi.yml",
-    "readme-metrics-api-openapi.yml",
     "readme-recipes-api-openapi.yml",
     "readme-search-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "readme-developer-metrics-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "readme-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "readme-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-apis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-branches-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-changelog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-custom-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-guides-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-recipes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-search-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
