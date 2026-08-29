@@ -8,6 +8,18 @@ description: >-
   — including the ReadMe Agent for multi-page editing, Inline AI rewrites, the AI Linter for style-guide enforcement,
   Docs Audit, GitHub AI Writer for PR-triggered doc updates, Ask AI for end users, and Model Context Protocol (MCP)
   servers for both ReadMe itself and each customer project so AI tools can search, read, update docs, and call APIs.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
