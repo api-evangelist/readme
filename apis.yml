@@ -164,27 +164,6 @@ apis:
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
     url: https://github.com/readmeio/metrics-sdks
-- aid: readme:readme-apis-api
-  name: ReadMe APIs API
-  description: Manage API definitions and reference pages
-  humanURL: https://docs.readme.com/main/reference/intro-to-the-readme-api
-  baseURL: https://api.readme.com/v2
-  tags: []
-  tags_raw:
-  - APIs
-  properties:
-  - type: OpenAPI
-    url: openapi/readme-apis-api-openapi.yml
-  - type: Documentation
-    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
-  - type: Authentication
-    url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
-  - type: Documentation
-    url: https://docs.readme.com/main/docs/sending-api-logs
-  - type: SDKs
-    url: https://github.com/readmeio/metrics-sdks
 - aid: readme:readme-branches-api
   name: ReadMe Branches API
   description: Manage versions and branches
@@ -357,6 +336,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/readme-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.readme.com/main/reference/intro-to-the-readme-api
+  - type: Authentication
+    url: https://docs.readme.com/main/reference/authentication
+  - type: GraphQL
+    url: graphql/readme-graphql.md
+  - type: Documentation
+    url: https://docs.readme.com/main/docs/sending-api-logs
+  - type: SDKs
+    url: https://github.com/readmeio/metrics-sdks
+- aid: readme:readme-apis-api
+  name: ReadMe AP Is API
+  description: Manage API definitions and reference pages
+  humanURL: https://docs.readme.com/main/docs/readmes-mcp-server
+  baseURL: https://api.readme.com/v2
+  tags:
+  - APIs
+  properties:
+  - type: OpenAPI
+    url: openapi/readme-apis-api-openapi.yml
   - type: Documentation
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
