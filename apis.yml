@@ -40,6 +40,9 @@ access: 3rd-Party
 position: Consuming
 created: '2025-01-08'
 modified: '2026-05-30'
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-17
 tags:
 - Documentation
 - Developer Hub
@@ -351,7 +354,8 @@ apis:
   description: Manage API definitions and reference pages
   humanURL: https://docs.readme.com/main/docs/readmes-mcp-server
   baseURL: https://api.readme.com/v2
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
