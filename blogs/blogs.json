@@ -3,27 +3,27 @@
   "feeds": [
     {
       "source": "https://dash.readme.com/login",
-      "feed_url": "https://blog.readme.io/rss/",
+      "feed_url": "https://dash.readme.com/login",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "none"
     },
     {
       "source": "https://blog.readme.io/rss/",
       "feed_url": "https://blog.readme.io/rss/",
       "title": "",
       "saved": 0,
-      "method": "feed"
+      "method": "none"
     },
     {
       "source": "https://blog.readme.com/rss/",
       "feed_url": "https://blog.readme.com/rss/",
       "title": "",
       "saved": 0,
-      "method": "feed"
+      "method": "none"
     }
   ],
-  "fetched": "2026-09-13T13:00:00Z",
+  "fetched": "2026-09-19T20:17:39Z",
   "post_count": 15,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "blog_subdomain",
