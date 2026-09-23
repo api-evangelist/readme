@@ -34,6 +34,8 @@ paths:
       responses:
         '200':
           description: List of guides
+      operationId: getBranchesByBranchGuides
+      x-operation-id-source: derived
     post:
       tags:
       - Guides
@@ -47,6 +49,8 @@ paths:
       responses:
         '201':
           description: Created
+      operationId: postBranchesByBranchGuides
+      x-operation-id-source: derived
   /branches/{branch}/guides/{slug}:
     get:
       tags:
@@ -66,6 +70,8 @@ paths:
       responses:
         '200':
           description: Guide page
+      operationId: getBranchesByBranchGuidesBySlug
+      x-operation-id-source: derived
     put:
       tags:
       - Guides
@@ -84,6 +90,8 @@ paths:
       responses:
         '200':
           description: Updated
+      operationId: putBranchesByBranchGuidesBySlug
+      x-operation-id-source: derived
     delete:
       tags:
       - Guides
@@ -102,6 +110,8 @@ paths:
       responses:
         '204':
           description: Deleted
+      operationId: deleteBranchesByBranchGuidesBySlug
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

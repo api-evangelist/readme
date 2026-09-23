@@ -35,6 +35,8 @@ paths:
           description: Unauthorized
         '400':
           description: Invalid payload
+      operationId: postRequest
+      x-operation-id-source: derived
 components:
   schemas:
     MetricsRequest:

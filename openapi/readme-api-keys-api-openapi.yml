@@ -28,6 +28,8 @@ paths:
       responses:
         '200':
           description: API keys
+      operationId: getApikeys
+      x-operation-id-source: derived
     post:
       tags:
       - API Keys
@@ -35,6 +37,8 @@ paths:
       responses:
         '201':
           description: Created
+      operationId: postApikeys
+      x-operation-id-source: derived
   /apikeys/{id}:
     delete:
       tags:
@@ -49,6 +53,8 @@ paths:
       responses:
         '204':
           description: Deleted
+      operationId: deleteApikeysById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

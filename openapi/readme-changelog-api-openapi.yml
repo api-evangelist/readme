@@ -34,6 +34,8 @@ paths:
       responses:
         '200':
           description: Changelog posts
+      operationId: getBranchesByBranchChangelogs
+      x-operation-id-source: derived
     post:
       tags:
       - Changelog
@@ -47,6 +49,8 @@ paths:
       responses:
         '201':
           description: Created
+      operationId: postBranchesByBranchChangelogs
+      x-operation-id-source: derived
   /branches/{branch}/changelogs/{slug}:
     get:
       tags:
@@ -66,6 +70,8 @@ paths:
       responses:
         '200':
           description: Changelog post
+      operationId: getBranchesByBranchChangelogsBySlug
+      x-operation-id-source: derived
     put:
       tags:
       - Changelog
@@ -84,6 +90,8 @@ paths:
       responses:
         '200':
           description: Updated
+      operationId: putBranchesByBranchChangelogsBySlug
+      x-operation-id-source: derived
     delete:
       tags:
       - Changelog
@@ -102,6 +110,8 @@ paths:
       responses:
         '204':
           description: Deleted
+      operationId: deleteBranchesByBranchChangelogsBySlug
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

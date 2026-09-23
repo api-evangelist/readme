@@ -24,6 +24,8 @@ paths:
       responses:
         '200':
           description: Quality scores
+      operationId: getQuality
+      x-operation-id-source: derived
   /pageviews:
     get:
       tags:
@@ -43,6 +45,8 @@ paths:
       responses:
         '200':
           description: Page view stats
+      operationId: getPageviews
+      x-operation-id-source: derived
   /search:
     get:
       tags:
@@ -51,6 +55,8 @@ paths:
       responses:
         '200':
           description: Search analytics
+      operationId: getSearch
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

@@ -18,18 +18,22 @@
     "readme-recipes-api-openapi.yml",
     "readme-search-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "readme-developer-metrics-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "readme-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "readme-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: readme-ap-is-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 14 total)"
   ],
   "skipped": [
     "readme-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "readme-ap-is-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "readme-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "readme-apis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "readme-branches-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "readme-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "readme-changelog-api-openapi.yml: previously refined output, superseded by openapi/_original/",

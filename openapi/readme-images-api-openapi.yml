@@ -28,6 +28,8 @@ paths:
       responses:
         '201':
           description: Image uploaded
+      operationId: postImages
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

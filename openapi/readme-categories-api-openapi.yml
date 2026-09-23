@@ -34,6 +34,8 @@ paths:
       responses:
         '200':
           description: Categories
+      operationId: getBranchesByBranchCategories
+      x-operation-id-source: derived
     post:
       tags:
       - Categories
@@ -47,6 +49,8 @@ paths:
       responses:
         '201':
           description: Created
+      operationId: postBranchesByBranchCategories
+      x-operation-id-source: derived
   /branches/{branch}/categories/{slug}:
     get:
       tags:
@@ -66,6 +70,8 @@ paths:
       responses:
         '200':
           description: Category
+      operationId: getBranchesByBranchCategoriesBySlug
+      x-operation-id-source: derived
     put:
       tags:
       - Categories
@@ -84,6 +90,8 @@ paths:
       responses:
         '200':
           description: Updated
+      operationId: putBranchesByBranchCategoriesBySlug
+      x-operation-id-source: derived
     delete:
       tags:
       - Categories
@@ -102,6 +110,8 @@ paths:
       responses:
         '204':
           description: Deleted
+      operationId: deleteBranchesByBranchCategoriesBySlug
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

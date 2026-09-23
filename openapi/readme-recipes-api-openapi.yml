@@ -28,6 +28,8 @@ paths:
       responses:
         '200':
           description: Recipes
+      operationId: getRecipes
+      x-operation-id-source: derived
     post:
       tags:
       - Recipes
@@ -35,6 +37,8 @@ paths:
       responses:
         '201':
           description: Created
+      operationId: postRecipes
+      x-operation-id-source: derived
   /recipes/{slug}:
     get:
       tags:
@@ -49,6 +53,8 @@ paths:
       responses:
         '200':
           description: Recipe
+      operationId: getRecipesBySlug
+      x-operation-id-source: derived
     put:
       tags:
       - Recipes
@@ -62,6 +68,8 @@ paths:
       responses:
         '200':
           description: Updated
+      operationId: putRecipesBySlug
+      x-operation-id-source: derived
     delete:
       tags:
       - Recipes
@@ -75,6 +83,8 @@ paths:
       responses:
         '204':
           description: Deleted
+      operationId: deleteRecipesBySlug
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:
