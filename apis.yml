@@ -52,6 +52,9 @@ tags:
 - Artificial Intelligence
 - MCP
 - Bi-Directional Sync
+- API Documentation
+- Developer Portal
+- OpenAPI
 tags_raw:
 - Documentation
 - Developer Hub
@@ -61,6 +64,9 @@ tags_raw:
 - AI
 - MCP
 - Bi-Directional Sync
+- API Documentation
+- Developer Portal
+- OpenAPI
 segments:
 - Documentation
 apis:
@@ -139,8 +145,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -161,8 +165,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -181,8 +183,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -201,8 +201,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -221,8 +219,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -241,8 +237,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -261,8 +255,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -283,8 +275,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -303,8 +293,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -323,8 +311,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
@@ -343,14 +329,12 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
     url: https://github.com/readmeio/metrics-sdks
 - aid: readme:readme-apis-api
-  name: ReadMe AP Is API
+  name: ReadMe APIs API
   description: Manage API definitions and reference pages
   humanURL: https://docs.readme.com/main/docs/readmes-mcp-server
   baseURL: https://api.readme.com/v2
@@ -364,8 +348,6 @@ apis:
     url: https://docs.readme.com/main/reference/intro-to-the-readme-api
   - type: Authentication
     url: https://docs.readme.com/main/reference/authentication
-  - type: GraphQL
-    url: graphql/readme-graphql.md
   - type: Documentation
     url: https://docs.readme.com/main/docs/sending-api-logs
   - type: SDKs
