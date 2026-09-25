@@ -1,0 +1,533 @@
+# Vendor facets — ReadMe. A hosted developer hub (guides, OpenAPI reference with Try It!,
+# changelog, forums, personalized docs) that added a full agent-discoverability panel in 2026:
+# llms.txt, an RFC 9727 api-catalog, an agent-skills index, content signals, Markdown for agents,
+# an MCP server card and a hosted MCP server whose tools can call the API. The lift spreads across
+# Developer Ergonomics pointers and Agent Readiness; the MCP server is one template (`platform`),
+# and nothing reaches Contract Quality unless the API Designer is the provider's only contract.
+vendor: readme
+name: ReadMe
+website: https://readme.com
+areas:
+- documentation
+- developer-portal
+registry_keys:
+- readme
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: measured
+summary: >-
+  ReadMe is the broadest developer-portal lift in this set: Try It!, a changelog with RSS, forums, Getting
+  Started and Authentication landing pages, recipes, and a Discoverability panel (llms.txt, RFC 9727 api-catalog,
+  agent-skills index, content signals) that is on every plan. Most of those are pointer checks, so they
+  count only once the provider declares them in its apis.json. The hosted MCP server is the most capable
+  docs MCP here (its execute-request tool calls the API), but it is one ReadMe template on readme.io or
+  the hub domain, so the rubric grades it `platform`; and ReadMe renders the OpenAPI it is given, so Contract
+  Quality does not move.
+features:
+- id: hosted-hub
+  name: Hosted developer hub with guides and API reference
+  description: >-
+    A hosted docs hub with Markdown/MDX guides and an API reference generated from uploaded OpenAPI (through
+    3.1, Swagger 2.0 up-converted).
+  source: https://docs.readme.com/main/docs/openapi-compatibility-chart
+  tier: all
+- id: try-it
+  name: Try It! API explorer
+  description: >-
+    Readers call the API from the reference, with OAuth flows applied from the spec's security schemes
+    and personalized keys for logged-in users.
+  source: https://docs.readme.com/main/docs/api-exploration-tools
+  tier: all
+- id: reference-landing-pages
+  name: Getting Started and Authentication landing pages
+  description: >-
+    Built-in Getting Started and Authentication pages in the API reference that surface the reader's own
+    keys.
+  source: https://docs.readme.com/main/docs/reference-core-pages
+  tier: all
+- id: changelog
+  name: Changelog with RSS
+  description: >-
+    A dated changelog feed with typed posts (Added, Fixed, Deprecated, Removed), Git-backed and served
+    as RSS.
+  source: https://docs.readme.com/main/docs/changelog
+  tier: all
+- id: recipes
+  name: Recipes
+  description: Stepped, annotated code walkthroughs for common API use cases.
+  source: https://docs.readme.com/main/docs/writing-docs/llms.txt
+  tier: all
+- id: forums
+  name: Discussion forums and dev FAQ
+  description: In-hub Q&A forums with team replies and an FAQ built from them.
+  source: https://docs.readme.com/main/docs/developer-experience/llms.txt
+  tier: all
+- id: llms-txt
+  name: Generated llms.txt (split by section or category)
+  description: >-
+    Publishes an auto-updated llms.txt at the hub root, optionally split per section and category, or
+    served from a provider-authored file in Git.
+  source: https://docs.readme.com/main/docs/ai-discoverability
+  tier: all
+- id: api-catalog
+  name: RFC 9727 api-catalog and Link headers
+  description: >-
+    Publishes /.well-known/api-catalog listing every API definition in the project with links to each
+    OpenAPI, advertised by RFC 8288 Link headers.
+  source: https://docs.readme.com/main/docs/ai-discoverability
+  tier: all
+- id: skills-index
+  name: Agent Skills discovery index
+  description: Publishes /.well-known/agent-skills/index.json (v0.2.0) advertising skills for the documentation.
+  source: https://docs.readme.com/main/docs/ai-discoverability
+  tier: all
+- id: content-signals
+  name: Content signals for AI use
+  description: Per-project allow/deny signals for model training, search indexing and prompt context.
+  source: https://docs.readme.com/main/docs/ai-discoverability
+  tier: all
+- id: markdown-for-agents
+  name: Markdown for agents
+  description: >-
+    Returns Markdown to Accept text/markdown requests and at <page>.md, with sub-page and sibling links
+    for crawling.
+  source: https://docs.readme.com/main/docs/ai-discoverability
+  tier: all
+- id: hosted-mcp
+  name: Hosted MCP server
+  description: >-
+    A per-project MCP server at <project>.readme.io/mcp with OpenAPI tools (list/get/search endpoints,
+    execute-request) on all plans and docs search/fetch with the AI Booster Pack.
+  source: https://docs.readme.com/main/docs/mcp
+  tier: all
+- id: mcp-server-card
+  name: MCP server card and WebMCP tools
+  description: >-
+    Serves /.well-known/mcp/server-card.json and registers search/navigate/read/try tools in the browser
+    via navigator.modelContext.
+  source: https://docs.readme.com/main/docs/ai-discoverability
+  tier: all
+- id: api-designer
+  name: API Designer
+  description: >-
+    Build an API reference in a visual editor with no OpenAPI file; the result is stored and served as
+    an OpenAPI definition.
+  source: https://docs.readme.com/main/docs/api-designer
+  tier: all
+- id: health-check
+  name: Health check banner
+  description: >-
+    A hub banner driven by a manual toggle or a Statuspage.io sync that links to the provider's status
+    URL.
+  source: https://docs.readme.com/main/docs/health-check-status-updates
+  tier: paid
+- id: postman-sync
+  name: Postman collection sync
+  description: Deploys Postman collections into the reference and lets readers fork a collection into
+    Postman.
+  source: https://docs.readme.com/main/docs/postman-1
+  tier: all
+- id: webhooks-rendering
+  name: OpenAPI 3.1 webhooks rendering
+  description: Renders the webhooks object alongside paths in the reference.
+  source: https://docs.readme.com/main/docs/openapi-compatibility-chart
+  tier: all
+maps:
+- feature: hosted-hub
+  check: documentation_present
+  layer: composite
+  provider_must: Declare the hub as a Documentation pointer.
+  catalog_pass_rate: 0.453
+  facet: developer_ergonomics
+  points: 4
+  baseline_pass_rate: 0.95
+  saturated: true
+  saturated_note: >-
+    95% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+  cohort_pct: 63.1
+  control_pct: 95.7
+  delta_pp: -32.6
+- feature: hosted-hub
+  check: api_reference_present
+  layer: composite
+  provider_must: Declare the reference section as an APIReference pointer.
+  catalog_pass_rate: 0.222
+  facet: developer_ergonomics
+  points: 3
+  baseline_pass_rate: 0.942
+  saturated: true
+  saturated_note: >-
+    94% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+  cohort_pct: 61.1
+  control_pct: 94.9
+  delta_pp: -33.8
+- feature: hosted-hub
+  check: portal_present
+  layer: composite
+  provider_must: Declare the hub as a DeveloperPortal pointer.
+  catalog_pass_rate: 0.228
+  facet: developer_ergonomics
+  points: 4
+  baseline_pass_rate: 0.633
+  cohort_pct: 49.6
+  control_pct: 63.6
+  delta_pp: -14.0
+- feature: try-it
+  check: console_or_sandbox
+  layer: composite
+  provider_must: Declare Try It! (or the reference) as a Console pointer.
+  catalog_pass_rate: 0.089
+  facet: developer_ergonomics
+  points: 3
+  baseline_pass_rate: 0.332
+  cohort_pct: 43.0
+  control_pct: 33.0
+  delta_pp: 10.0
+- feature: reference-landing-pages
+  check: getting_started_present
+  layer: composite
+  provider_must: Fill in the Getting Started page and declare it as a GettingStarted pointer.
+  catalog_pass_rate: 0.206
+  facet: developer_ergonomics
+  points: 5
+  baseline_pass_rate: 0.636
+  cohort_pct: 50.0
+  control_pct: 64.0
+  delta_pp: -14.0
+- feature: reference-landing-pages
+  check: authentication_documented
+  layer: composite
+  provider_must: Fill in the Authentication page and declare it as an Authentication pointer.
+  catalog_pass_rate: 0.368
+  facet: developer_ergonomics
+  points: 5
+  baseline_pass_rate: 0.94
+  saturated: true
+  saturated_note: >-
+    94% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+  cohort_pct: 90.6
+  control_pct: 94.1
+  delta_pp: -3.5
+- feature: changelog
+  check: change_log_present
+  layer: composite
+  provider_must: Post to it and declare it as a ChangeLog pointer.
+  catalog_pass_rate: 0.157
+  facet: operational_transparency
+  points: 6
+  baseline_pass_rate: 0.438
+  cohort_pct: 41.4
+  control_pct: 43.9
+  delta_pp: -2.5
+- feature: recipes
+  check: examples_published
+  layer: composite
+  provider_must: Write recipes and declare the recipes index as a CodeExamples pointer.
+  catalog_pass_rate: 0.052
+  facet: contract_quality
+  points: 4
+  baseline_pass_rate: 0.127
+  cohort_pct: 4.9
+  control_pct: 12.9
+  delta_pp: -8.0
+- feature: recipes
+  check: openapi_examples
+  layer: agent_readiness
+  grade: documented
+  partial: true
+  partial_note: >-
+    The dimension reads examples inside the OpenAPI first; recipes and generated code samples reach only
+    the Examples / Code Samples link fallback.
+  points: 7
+  baseline_pass_rate: 0.36
+  cohort_pct: 47.5
+  control_pct: 35.8
+  delta_pp: 11.7
+- feature: forums
+  check: support_channel
+  layer: composite
+  provider_must: Enable the forum and declare it as a Community pointer.
+  catalog_pass_rate: 0.45
+  facet: developer_ergonomics
+  points: 2
+  baseline_pass_rate: 0.69
+  cohort_pct: 74.2
+  control_pct: 68.9
+  delta_pp: 5.3
+- feature: llms-txt
+  check: llms_txt_published
+  layer: composite
+  provider_must: Keep the LLMs.txt setting on and serve the hub from its own custom domain.
+  note: >-
+    Generated from the provider's own docs on the provider's domain, so it reads as the provider's (rule
+    2's own-content, own-domain case); a Git-authored custom llms.txt is plainly first-party.
+  catalog_pass_rate: 0.351
+  facet: discoverability
+  points: 4
+  baseline_pass_rate: 0.65
+  cohort_pct: 85.2
+  control_pct: 64.6
+  delta_pp: 20.6
+- feature: api-catalog
+  check: well_known_published
+  layer: composite
+  provider_must: >-
+    Turn on API Catalog and serve the hub at the root of a host the harvest probes (docs.<domain>); an
+    Enterprise hub under a path prefix is not at a host root.
+  catalog_pass_rate: 0.005
+  facet: discoverability
+  points: 6
+  baseline_pass_rate: 0.018
+  cohort_pct: 5.7
+  control_pct: 1.7
+  delta_pp: 4.0
+- feature: api-catalog
+  check: well_known_catalog
+  layer: agent_readiness
+  provider_must: Declare the api-catalog URL as an APICatalog / WellKnown pointer.
+  points: 4
+  baseline_pass_rate: 0.061
+  cohort_pct: 13.9
+  control_pct: 5.9
+  delta_pp: 8.0
+- feature: skills-index
+  check: agent_skills
+  layer: agent_readiness
+  credit: 0.25
+  note: >-
+    The page does not say who writes the advertised skills; absent evidence that they are provider-authored,
+    a platform-published skill set is graded `derived`.
+  points: 5
+  baseline_pass_rate: 0.236
+  cohort_pct: 19.7
+  control_pct: 23.7
+  delta_pp: -4.0
+- feature: skills-index
+  check: agent_skill_present
+  layer: composite
+  credit: 0.25
+  provider_must: Declare the skills index as an AgentSkill pointer.
+  note: Same artifact as agent_skills, same authorship discount.
+  catalog_pass_rate: 0.033
+  facet: developer_ergonomics
+  points: 3
+  baseline_pass_rate: 0.236
+  cohort_pct: 19.7
+  control_pct: 23.7
+  delta_pp: -4.0
+- feature: content-signals
+  check: consent_identity
+  layer: agent_readiness
+  provider_must: >-
+    Set the signals and declare them as a ContentSignal pointer; the dimension reads the pointer, not
+    the robots output.
+  points: 3
+  baseline_pass_rate: 0.006
+  cohort_pct: 0.0
+  control_pct: 0.6
+  delta_pp: -0.6
+- feature: hosted-mcp
+  check: mcp_server
+  layer: agent_readiness
+  grade: platform
+  note: >-
+    One ReadMe server template across every project; 0.22.0 grades that `platform` (0.25 of 12) even though
+    its execute-request tool calls the provider's API rather than only searching docs.
+  points: 12
+  baseline_pass_rate: 0.22
+  cohort_pct: 22.0
+  control_pct: 22.0
+  delta_pp: 0.0
+- feature: api-designer
+  check: contract_present
+  layer: composite
+  conditional: true
+  condition: >-
+    Only for a provider with no published contract that builds its reference in the API Designer and exposes
+    the resulting OpenAPI (via the api-catalog or a download link).
+  creates_artifact: true
+  note: >-
+    The designer produces an OpenAPI the provider would otherwise lack; for anyone who uploads their own
+    spec it adds nothing.
+  catalog_pass_rate: 0.31
+  facet: contract_quality
+  points: 20
+  baseline_pass_rate: 0.949
+  saturated: true
+  saturated_note: >-
+    95% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+  cohort_pct: 96.1
+  control_pct: 94.8
+  delta_pp: 1.3
+- feature: api-designer
+  check: spec_presence
+  layer: agent_readiness
+  conditional: true
+  condition: >-
+    Same as contract_present — only when the designer's OpenAPI is the provider's first published contract.
+  points: 18
+  baseline_pass_rate: 1.0
+  saturated: true
+  saturated_note: >-
+    100% of providers with a contract, docs and a reference already earn this; the vendor cannot move
+    it for most of its buyers.
+  cohort_pct: 100.0
+  control_pct: 100.0
+  delta_pp: 0.0
+- feature: webhooks-rendering
+  check: webhooks_advertised
+  layer: composite
+  conditional: true
+  condition: Only if the API already has webhooks; rendering the webhooks object cannot invent one.
+  provider_must: Declare the webhooks reference as a Webhooks pointer.
+  catalog_pass_rate: 0.085
+  facet: operational_transparency
+  points: 3
+  baseline_pass_rate: 0.361
+  cohort_pct: 61.9
+  control_pct: 35.5
+  delta_pp: 26.4
+earns_nothing:
+- feature: mcp-server-card
+  check: well_known_published
+  why: >-
+    The MCP server card is not an api-catalog, security.txt, protected-resource or AAuth document; only
+    the api-catalog row earns this check.
+- feature: health-check
+  check: status_page_present
+  why: >-
+    A banner that relays Statuspage.io is not a status page; the provider still needs its own StatusPage.
+- feature: postman-sync
+  check: postman_present
+  why: >-
+    ReadMe consumes collections and offers a fork button; the collection itself must be one the provider
+    publishes.
+- feature: hosted-hub
+  check: examples_present
+  why: >-
+    Rendering a spec's examples writes none into the contract; contract-side examples are the provider's
+    own work.
+out_of_reach:
+  checks:
+  - info_complete
+  - operations_description_coverage
+  - error_responses_documented
+  - sdk_count_1
+  - sdk_count_3
+  - cli_present
+  - rules_present
+  - openapi_3_2
+  note: >-
+    ReadMe renders up to OpenAPI 3.1 and does not edit the contract, generate SDKs or a CLI for the provider,
+    or publish a governance ruleset.
+unscored_practice:
+- feature: markdown-for-agents
+  why: Accept text/markdown negotiation and .md twins; no check reads markdown negotiation.
+- feature: mcp-server-card
+  why: SEP-1649 server card and WebMCP tools are real agent discovery surfaces no check reads.
+- feature: llms-txt
+  why: >-
+    The agent hint banner and llms.txt ?query= search are agent affordances the llms.txt row does not
+    distinguish from a stub file.
+surface:
+  discoverability:
+    reachable: 10.0
+    total: 54
+  contract_quality:
+    reachable: 24.0
+    total: 211
+  operational_transparency:
+    reachable: 9.0
+    total: 38
+  developer_ergonomics:
+    reachable: 26.8
+    total: 42
+  agent_readiness:
+    reachable: 31.0
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- https://docs.readme.com/main/docs/ai-discoverability
+- https://docs.readme.com/main/docs/api-designer
+- https://docs.readme.com/main/docs/api-exploration-tools
+- https://docs.readme.com/main/docs/changelog
+- https://docs.readme.com/main/docs/developer-experience/llms.txt
+- https://docs.readme.com/main/docs/health-check-status-updates
+- https://docs.readme.com/main/docs/mcp
+- https://docs.readme.com/main/docs/openapi-compatibility-chart
+- https://docs.readme.com/main/docs/postman-1
+- https://docs.readme.com/main/docs/reference-core-pages
+- https://docs.readme.com/main/docs/writing-docs/llms.txt
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 196
+    in_baseline: 122
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5094
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  composite_mean:
+    cohort: 48.1
+    control: 48.0
+  agent_readiness_mean:
+    cohort: 34.4
+    control: 32.5
+  status: measured
+  caveat: >-
+    A cohort delta is association, not cause: customers choose a vendor for reasons that also move their
+    score. Read it beside the capability map, never instead of it.
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 8977
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 8.6
+    p75: 11.6
+    p90: 13.5
+    max: 18.0
+    mean_among_movers: 8.5
+  agent_readiness_lift:
+    median: 8.1
+    p75: 9.3
+    p90: 9.4
+    max: 10.9
+    mean_among_movers: 7.9
+  facet_lift_median_among_movers:
+    discoverability: 11.1
+    contract_quality: 2.7
+    operational_transparency: 15.8
+    developer_ergonomics: 28.0
+  composite_band_moves:
+    thin -> developing: 2845
+    developing -> strong: 1623
+    emerging -> thin: 358
+    strong -> exemplar: 339
+    emerging -> developing: 67
+    developing -> exemplar: 5
+    minimal -> emerging: 2
+    thin -> strong: 2
+    minimal -> thin: 1
+  agent_readiness_band_moves:
+    agent-aware -> agent-ready: 4230
+    agent-ready -> agent-native: 270
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written

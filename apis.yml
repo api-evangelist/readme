@@ -353,6 +353,8 @@ apis:
   - type: SDKs
     url: https://github.com/readmeio/metrics-sdks
 common:
+- type: VendorFacets
+  url: vendor-facets/readme-vendor-facets.yml
 - type: Website
   url: https://www.readme.com/
 - type: AgenticAccess
