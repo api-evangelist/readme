@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: ReadMe AP Is API
+  title: ReadMe APIs API
   description: The ReadMe API (v2) lets you programmatically control your ReadMe developer hub. It manages API definitions, API reference pages, guides, changelog, custom pages, categories, branches (versions), images, recipes, and search.
   version: '2.0'
   contact:
