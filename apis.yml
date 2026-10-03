@@ -463,3 +463,11 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 specificationVersion: '0.23'
+x-correction-request:
+  requested: '2026-10-03'
+  source:
+  - apis.io Influence-tier request queue (kinlane-test-influence)
+  request: 'Influence-tier artifact submission 0800d421 (2026-09-23): MCP at https://docs.readme.com/main/docs/readmes-mcp-server.
+    Verify it is live and real (MCP: initialize/tools/list or server card; OpenAPI: paths), then record it as a
+    pointer and harvest it. Influence-tier fact correction cb59eae2 (2026-09-23): proposed {"industries": ["developer-tools",
+    "artificial-intelligence"]}. Verify against the provider''s own site; use catalog industry/tag vocabulary.'
