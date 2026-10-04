@@ -1,0 +1,52 @@
+slug: readme
+provider: ReadMe
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Custom Pages
+  spec_file: readme-custom-pages-api-openapi.yml
+  capability_id: BC-4270.30
+  capability_id_l1: BC-4270
+  capability_name: Developer Portal Management
+  confidence: 0.85
+  evidence: '"Create A Custom Page" on /branches/{branch}/custom_pages — "lets you programmatically control
+    your ReadMe developer hub"'
+  reason: Operations manage content pages of a developer documentation hub; this is developer portal content
+    management.
+- tag: Guides
+  spec_file: readme-guides-api-openapi.yml
+  capability_id: BC-4270.30
+  capability_id_l1: BC-4270
+  capability_name: Developer Portal Management
+  confidence: 0.85
+  evidence: '"List Guide Pages", "Create A Guide Page" within the ReadMe developer hub'
+  reason: Authoring and lifecycle of documentation guides on a developer portal.
+- tag: Recipes
+  spec_file: readme-recipes-api-openapi.yml
+  capability_id: BC-4270.30
+  capability_id_l1: BC-4270
+  capability_name: Developer Portal Management
+  confidence: 0.75
+  evidence: '"Create A Recipe" within an API that "manages API definitions, API reference pages, guides,
+    changelog, custom pages ... recipes"'
+  reason: Recipes are interactive tutorial content in the developer documentation portal.
+- tag: Metrics
+  spec_file: readme-metrics-api-openapi.yml
+  capability_id: BC-4270.50
+  capability_id_l1: BC-4270
+  capability_name: API Consumption Governance
+  confidence: 0.7
+  evidence: '"It accepts API request logs from Metrics SDKs ... exposes analytics ... so teams can investigate
+    API usage by key or email"'
+  reason: API consumption usage analytics for a developer platform; fits API consumption governance, though
+    quota/tier mapping is not explicit.
