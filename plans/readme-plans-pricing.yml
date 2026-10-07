@@ -1,98 +1,55 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: ReadMe
-providerId: readme
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-22'
-sourceURL: https://readme.com/pricing
-tags:
-  - Documentation
-  - Developer Hub
-  - Platform
-  - SaaS Pricing
-description: Machine-readable plans for ReadMe's developer hub product, sourced from https://readme.com/pricing.
-  Pricing is the seat/hub subscription that includes API access; the ReadMe API itself does not have a separately
-  metered consumption price.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://readme.com/pricing
+sources:
+- https://readme.com/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: true
+note: Tiered SaaS docs platform pricing with AI and logs add-ons; Enterprise is quote-based.
+plan_count: 5
+currency: USD
 plans:
-  - id: readme-free
-    name: Starter
-    type: freemium
-    price: '0.00'
-    currency: USD
-    billingFrequency: monthly
-    description: Free entry plan — includes custom domain, bi-directional Git sync, interactive API reference,
-      usage metrics, the markdown editor, and customizable themes.
-    elements:
-      - name: Custom Domain
-      - name: Bi-Directional Sync (GitHub / GitLab)
-      - name: Interactive API Reference
-      - name: Usage Metrics
-      - name: Markdown Editor
-      - name: Customizable Themes
-      - name: ReadMe API access
-      - name: ReadMe Developer Metrics API access
-  - id: readme-pro
-    name: Pro
-    type: paid
-    price: '250.00'
-    currency: USD
-    billingFrequency: monthly
-    billingNote: Billed annually. Marketing-labeled the "Popular" plan.
-    description: Production-grade developer hub. Everything in Starter plus teammate invitations, branching and
-      reviews, notifications, private docs, landing page, changelog / recipes / forums, custom MDX components,
-      reusable content, and CSS/HTML customization.
-    elements:
-      - name: Teammate Invitations
-      - name: Branching and Reviews
-      - name: Notifications
-      - name: Private Docs
-      - name: Landing Page
-      - name: Changelog, Recipes, Forums
-      - name: Custom MDX Components
-      - name: Reusable Content
-      - name: CSS / HTML Customization
-      - name: ReadMe API access
-      - name: ReadMe Developer Metrics API access
-  - id: readme-enterprise
-    name: Enterprise
-    type: enterprise
-    price: '3000.00'
-    priceQualifier: starting
-    currency: USD
-    billingFrequency: monthly
-    billingNote: Annual billing only; contact sales.
-    description: Multi-project enterprise tier. Adds combined multi-project hubs, removal of ReadMe branding,
-      user roles and access control, branch-review permissions, global reusable content library, audit logs,
-      SSO / OAuth, dedicated support, and implementation services.
-    elements:
-      - name: Multiple Combined Projects (Enterprise Group)
-      - name: No ReadMe Branding
-      - name: User Roles & Access Control
-      - name: Branch Review Permissions
-      - name: Global Reusable Content Library
-      - name: Audit Logs
-      - name: SSO / OAuth / SAML
-      - name: Dedicated Support
-      - name: Implementation Services
-      - name: ReadMe API access
-      - name: ReadMe Developer Metrics API access
-addOns:
-  - id: ask-ai
-    name: Ask AI
-    type: addon
-    price: '150.00'
-    currency: USD
-    billingFrequency: monthly
-    description: AI assistant for end-users of the docs, powered by OpenAI. Available as a $150/mo add-on across
-      all tiers.
-notes:
-  - The ReadMe and Metrics APIs are unlocked by the seat/hub subscription; ReadMe does not publish a per-call
-    consumption price for its own APIs.
-  - A free trial is available for the Pro tier.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Starter
+  price_text: $ 0 /month
+  price: 0
+  currency: USD
+  period: month
+  included_quota: 1 project, 1 version, custom domain, bi-directional sync, interactive API reference,
+    usage metrics, 1 admin
+- name: Pro
+  price_text: $ 250 /month
+  price: 250
+  currency: USD
+  period: month
+  included_quota: Billed annually; all Starter features plus teammates, multiplayer editing, branching,
+    private docs; 5 admins
+  overage: $20/additional admin
+- name: Enterprise
+  price_text: Contact Us
+  period: none
+  included_quota: Annual billing only; all Pro features plus multi-project, SSO, audit logs
+- name: Ask AI add-on
+  price_text: Ask AI ($150/mo)
+  price: 150
+  currency: USD
+  period: month
+  unit: add-on
+- name: Extended history & logs
+  price_text: $100 /month
+  price: 100
+  currency: USD
+  period: month
+  unit: add-on
+rate_limit_statements:
+- Request History 24 Hours
+- Detailed logs 24 Hours
