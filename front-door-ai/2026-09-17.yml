@@ -7,14 +7,17 @@ front_door_ai:
   probed_at: '2026-09-17'
   host: www.readme.com
   final_host: readme.com
-  ownership: inherited
+  ownership: own
   owner: readme
   shares_host_with: null
-  inherited_from: readme.com
+  inherited_from: null
+  alias_of: readme.com
   verdict: scored
-  score: null
+  score: 13
+  band: 5
+  band_label: prominent
   host_score: 13
-  density: null
+  density: 8.06
   words: 1612
   tiers:
     agentic: 4
