@@ -1,0 +1,12 @@
+generated: '2026-10-04'
+method: derived
+source: https://docs.readme.com/main/docs/mcp.md
+
+# MCP Server manifest for ReadMe
+# No concrete remote endpoint is published; the docs show a placeholder URL pattern.
+# Therefore we record a derived candidate with mode: none.
+
+deployment:
+  mode: none
+  verified: derived
+  # endpoint, install, package omitted because no concrete server is provided.

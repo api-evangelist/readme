@@ -1,0 +1,38 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://readme.com/postman
+sources:
+- https://readme.com/postman
+- https://readme.com/blog/readme-vs-fern
+- https://readme.com/blog/cli
+- https://readme.com/blog/ai-tools-for-api-documentation
+install:
+- method: npx
+  command: npx @readme/cli
+commands:
+- group: lint
+  commands:
+  - npx @readme/cli lint
+  - npx @readme/cli lint --fix
+- group: oas
+  commands:
+  - npx @readme/cli oas:sync
+  - npx @readme/cli oas:validate
+- group: setup
+  commands:
+  - npx @readme/cli setup:github
+  - npx @readme/cli setup:github --blacksmith
+  - npx @readme/cli setup:gitlab
+  - npx @readme/cli setup:bitbucket
+  - npx @readme/cli setup:rwx
+  - npx @readme/cli setup:circleci
+- group: dev
+  commands:
+  - npx @readme/cli dev
+- group: other
+  commands:
+  - npx @readme/cli help
+  - npx @readme/cli play
+binary: '@readme/cli'
+docs: https://readme.com/postman

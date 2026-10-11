@@ -1,0 +1,1 @@
+{"$schema":"https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json","name":"com.readme/readme-docs-group","version":"1.0.0","title":"ReadMe Documentation","description":"MCP server for ReadMe Documentation. Lets AI agents explore this project's API reference and documentation.","remotes":[{"type":"streamable-http","url":"https://docs.readme.com/mcp"}]}

@@ -1,0 +1,35 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/readme-apis-api-openapi.yml
+skills:
+- file: skills/readme-custom-pages-crud.md
+  name: readme-custom-pages-crud
+  api: openapi/readme-custom-pages-api-openapi.yml
+  operations:
+  - postBranchesByBranchCustomPages
+  - getBranchesByBranchCustomPagesBySlug
+  - putBranchesByBranchCustomPagesBySlug
+  - deleteBranchesByBranchCustomPagesBySlug
+- file: skills/readme-manage-recipe.md
+  name: readme-manage-recipe
+  api: openapi/readme-recipes-api-openapi.yml
+  operations:
+  - postRecipes
+  - getRecipesBySlug
+  - putRecipesBySlug
+  - deleteRecipesBySlug
+- file: skills/readme-guide-crud.md
+  name: readme-guide-crud
+  api: openapi/readme-guides-api-openapi.yml
+  operations:
+  - postBranchesByBranchGuides
+  - getBranchesByBranchGuidesBySlug
+  - putBranchesByBranchGuidesBySlug
+  - deleteBranchesByBranchGuidesBySlug
+- file: skills/readme-branch-create-and-retrieve.md
+  name: readme-branch-create-and-retrieve
+  api: openapi/readme-branches-api-openapi.yml
+  operations:
+  - postBranches
+  - getBranchesByBranch

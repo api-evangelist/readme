@@ -1,0 +1,31 @@
+generated: '2026-10-04'
+method: probed
+source: https://readme.com/privacy
+signals:
+  data_subject_request:
+    evidence:
+      - source: https://readme.com/privacy
+        http_status: 200
+        fetched: /tmp/readme_privacy.html
+        quote: "You have certain rights with respect to your Personal Data, including those set forth below."
+        note: "Indicates provision of data subject rights."
+      - source: https://readme.com/privacy
+        http_status: 200
+        fetched: /tmp/readme_privacy.html
+        quote: "Access: You can request more information about the Personal Data we hold about you and request a copy of such Personal Data."
+        note: "Right to access data."
+      - source: https://readme.com/privacy
+        http_status: 200
+        fetched: /tmp/readme_privacy.html
+        quote: "Rectification: If you believe that any Personal Data we are holding about you is incorrect or incomplete, you can request that we correct or supplement such data."
+        note: "Right to rectify data."
+      - source: https://readme.com/privacy
+        http_status: 200
+        fetched: /tmp/readme_privacy.html
+        quote: "Erasure: You can request that we erase some or all of your Personal Data from our systems."
+        note: "Right to delete data."
+      - source: https://readme.com/privacy
+        http_status: 200
+        fetched: /tmp/readme_privacy.html
+        quote: "Portability: You can ask for a copy of your Personal Data in a machine-readable format."
+        note: "Right to data portability."

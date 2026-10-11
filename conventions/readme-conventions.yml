@@ -1,0 +1,27 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.readme.com/main/reference/pagination
+sources:
+- https://docs.readme.com/main/reference/pagination
+- https://docs.readme.com/main/reference/pagination-legacy
+- https://readme.com/resources/onboarding-users-with-personalized-docs
+- https://readme.com/resources/the-most-effective-api-quickstarts-in-8-examples
+idempotency:
+  coverage: none
+  evidence: The provided pages do not describe any idempotency key or related header.
+pagination:
+  style: body
+  response_fields:
+  - total
+  - page
+  - per_page
+  - paging.next
+  - paging.previous
+  - paging.first
+  - paging.last
+  - data
+  evidence: The ReadMe API uses pagination on endpoints that return collections of data. All pagination data will be returned within a paging
+    object in the response. Requests that return multiple resources will be paginated to 10 items by default. The page query parameter selects
+    the page, and per_page customizes the page size up to 100.
+docs: https://docs.readme.com/main/reference/pagination

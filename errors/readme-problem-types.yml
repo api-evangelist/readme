@@ -1,0 +1,42 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/readme-analytics-api-openapi.yml
+- openapi/readme-api-keys-api-openapi.yml
+- openapi/readme-apis-api-openapi.yml
+- openapi/readme-branches-api-openapi.yml
+- openapi/readme-categories-api-openapi.yml
+- openapi/readme-changelog-api-openapi.yml
+- openapi/readme-custom-pages-api-openapi.yml
+- openapi/readme-guides-api-openapi.yml
+- openapi/readme-images-api-openapi.yml
+- openapi/readme-metrics-api-openapi.yml
+- openapi/readme-recipes-api-openapi.yml
+- openapi/readme-search-api-openapi.yml
+format: custom
+envelope:
+  media_type: null
+  schema: null
+coverage:
+  operations: 44
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid payload
+  operations: 1
+  media_types: []
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  operations: 2
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: Branch not found
+  operations: 1
+  media_types: []
+  schema: null
