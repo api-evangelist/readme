@@ -6,6 +6,7 @@ specification: FinOps Framework
 specificationVersion: '1.0'
 provider: ReadMe
 providerId: readme
+name: ReadMe API FinOps
 publisherName: ReadMe
 serviceCategory: API
 created: '2026-05-04'

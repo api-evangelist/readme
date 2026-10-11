@@ -92,6 +92,9 @@ maintainers:
 specificationVersion: '0.23'
 
 common:
+- type: CapabilityMap
+  url: capabilities/readme-capability-edges.yml
+  name: ReadMe Business Capability Map
 - type: Spectral
   url: rules/readme-rules.yml
 - type: Spectral
