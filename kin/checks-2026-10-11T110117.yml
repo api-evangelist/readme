@@ -2,17 +2,17 @@
 kin_checks:
   slug: readme
   schema_version: 0.23.0
-  scored_at: '2026-10-03'
-  run_ts: 2026-10-03T024842
+  scored_at: '2026-10-11'
+  run_ts: 2026-10-11T110117
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.23.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 153
-    earned: 33
-    partial: 33
-    missed: 68
-    na: 19
+    earned: 35
+    partial: 34
+    missed: 64
+    na: 20
   checks:
   - id: newsroom_present
     status: missed
@@ -55,8 +55,6 @@ kin_checks:
   - id: security_schemes
     status: missed
     detail: 0 of 1 asyncapi documents pass
-  - id: json_schema_present
-    status: missed
   - id: json_schema_per_resource
     status: missed
   - id: json_ld_property_depth
@@ -73,8 +71,6 @@ kin_checks:
     status: missed
   - id: security_disclosure
     status: missed
-  - id: webhooks_advertised
-    status: missed
   - id: roadmap_present
     status: missed
   - id: examples_published
@@ -85,17 +81,11 @@ kin_checks:
     status: missed
   - id: agent_skill_present
     status: missed
-  - id: support_channel
-    status: missed
   - id: compliance_published
-    status: missed
-  - id: trust_center
     status: missed
   - id: reg_oauth_scopes
     status: missed
   - id: reg_vulnerability_disclosure
-    status: missed
-  - id: reg_compliance_published
     status: missed
   - id: reg_named_standard_conformance
     status: missed
@@ -136,6 +126,8 @@ kin_checks:
   - id: upsert_declared_conflict
     status: missed
   - id: reversibility_documented
+    status: missed
+  - id: mcp_server
     status: missed
   - id: idempotency
     status: missed
@@ -237,6 +229,9 @@ kin_checks:
     earned: 3.6
     detail: 12 of 12 openapi documents pass; credited at 90% because of their provenance
       (unknown)
+  - id: json_schema_present
+    status: partial
+    earned: 5.4
   - id: rules_present
     status: partial
     earned: 2.5
@@ -304,6 +299,7 @@ kin_checks:
   - graphql_descriptions
   - graphql_sdl_present
   - graphql_type_depth
+  - mcp_endpoint_discoverable
   - os_code_of_conduct
   - os_contribution_guide
   - os_releases
