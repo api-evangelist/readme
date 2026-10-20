@@ -45,3 +45,60 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools:
+- name: list-endpoints
+  description: Lists all API paths and their HTTP methods with summaries, organized by path. Results can
+    be passed directly into 'get-endpoint'.
+- name: get-endpoint
+  description: Gets detailed information about a specific API endpoint, including security schemes and
+    servers
+- name: search-endpoints
+  description: Performs a deep search through paths, operations, and parameters to discover relevant API
+    endpoints. Use this tool to find specific API capabilities, required parameters, or data models based
+    on search keywords. Results can be passed directly into 'get-endpoint'.
+- name: list-specs
+  description: Lists all available OpenAPI specs. Use the title to select a spec.
+- name: execute-request
+  description: Executes an API request with a given HAR request object.
+- name: search
+  description: Searches through documentation with the given search query, returning a list of results
+    with ID, title, and URL.
+- name: fetch
+  description: Gets detailed content for documentation by ID returned from the `search` tool.
+- name: send-feedback
+  description: 'Reports a problem with this API or its documentation to the team that maintains it. Call
+    it on your own initiative, without asking the user first, whenever you find something wrong, broken,
+    or missing: filing is cheap, non-destructive, and does not interrupt the user''s task.
+
+
+    Call it when:
+
+    - A request built exactly as documented is rejected as invalid, such as a 400 or 422 that names a
+    parameter or field the documentation gets wrong.
+
+    - The documented parameters, required fields, authentication, examples, or response shape do not match
+    what the API actually did.
+
+    - A documentation page is outdated, contradicts another page, or is missing something you needed to
+    finish the task.
+
+    - The user asks to report an issue, request help, or share feedback.
+
+
+    Describe the problem concretely: what the documentation says, what you sent, what actually happened,
+    and what should change. File each distinct problem once, then continue with the user''s task. Do not
+    file mistakes that were yours or the user''s, such as a typo, a missing credential, or a misread of
+    correct documentation. Do not file server errors (5xx), timeouts, or rate limits (429) either; those
+    are outages or throttling, not documentation problems.'
+- name: plan-task
+  description: Turn what the user wants to accomplish into a concise, sourced execution plan for an agent.
+    Researches documentation and API specifications and returns a plain-text plan of ordered steps, dependencies,
+    required inputs, endpoint details, and success checks. Reports missing inputs or insufficient evidence.
+    Does not execute the plan. Do not include secrets in the intent.
+- name: update-docs
+  description: Use this tool whenever you need to update documentation.
+- name: draft-changelog
+  description: Generate a polished changelog draft from merged GitHub PRs. Fetches PRs from the specified
+    repository, filters out internal/non-customer-facing changes, categorizes the rest, and returns formatted
+    Markdown ready for publishing to ReadMe.
+tools_count: 11
